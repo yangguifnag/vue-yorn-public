@@ -1,0 +1,443 @@
+@charset "UTF-8";
+
+// theme
+#app.theme{
+
+	&.theme-dark{
+		$baseColor1 : #1b2b38;
+		$baseColor2 : #FFFFFF;
+		$baseColor3 : #131e26;
+		$baseColor4 : #869fb1;
+		$baseColor5 : #363f44;
+		$baseColor6 : #f6f8f8;
+		$baseColor7 : #42b983;
+		$baseColor8 : #eff0f4;
+		$baseColor9 : #16232d;
+
+
+	
+		$bodyBg : $baseColor8;
+
+ 		$menuFont : $baseColor4;
+ 		$menuHoverFont : $baseColor2;
+
+		$menuBg : $baseColor1;
+		$menuHoverBg : $baseColor1;
+
+		$menuItemFont : $baseColor4;
+		$menuItemBg : $baseColor1;
+
+		$menuItemHoverBG : $baseColor3;
+		$menuItemHoverFont : $baseColor2;
+
+		$menuItemActiveBg : $baseColor9;
+		$menuItemActiveFont : $baseColor2;
+
+		$menuItemOpenBg : $baseColor3;
+		$menuItemOpenFont : $baseColor2;
+
+
+		$headBg : $baseColor2;
+		$headFont : $baseColor5;
+
+		$headLeftBg : $baseColor2;
+		$headLeftFont : $baseColor5;
+
+		$headItemHoverBg : $baseColor6;
+		$headItemHoverFont : $baseColor7;
+
+
+
+		background-color: $baseColor8;
+
+		.theme-aside,.theme-aside.el-aside{
+			background-color : $menuBg;
+			// menu
+			.el-menu{
+				background-color: $menuBg;
+				color: $menuFont;
+				&:hover{
+					background-color: $menuHoverBg;
+				}
+				.el-menu-item{
+					color: $menuItemFont;
+					background-color: $menuItemBg;
+					&.is-active{
+						color : $menuItemActiveFont;
+						background-color: $menuItemActiveBg;
+					}
+					&:hover{
+						color : $menuItemHoverFont;
+						background-color: $menuItemHoverBG;
+					}
+				}
+				.el-submenu {
+					color: $menuItemFont;
+					.el-submenu__title{
+						color: $baseColor4;
+						&:hover{
+							color: $baseColor2;
+							background-color: $baseColor3;
+						}
+					}
+
+					&.is-opened{
+						color: $menuItemOpenFont;
+						.el-submenu__title{
+							color: $menuItemOpenFont;
+							background-color: $menuItemOpenBg;
+							i{
+								color: $menuItemOpenFont;
+							}
+						}
+					}
+					
+				}
+				&.el-menu--inline{
+					background-color: $menuItemOpenBg;
+					.el-menu-item{
+						background-color: $menuItemOpenBg;
+						&.is-active{
+							color: $menuItemActiveFont;
+						}
+					}
+				}
+	
+			}
+			//menu end
+
+		}
+		// header
+		.theme-header,.theme-header.el-header{
+			background-color: $headBg;
+			.header{
+				color : $headFont;
+				background-color: $headBg;
+				.header-left{
+					background-color: $headLeftBg;
+					color: $headLeftFont;
+				}
+				.header-tools{
+					.fsicon{
+						color: $baseColor5;
+					}
+					.item{
+						transition: all .25s;
+						&:hover{
+							background-color: $headItemHoverBg;
+							.fsicon{
+								color: $headItemHoverFont;
+							}
+						} 
+					}
+				}
+				.menu-btn{
+					color: $headItemHoverFont;
+					&:hover{
+						background-color: $headItemHoverBg;
+						color: $headFont;
+					}
+				}
+			}
+		}
+	}
+
+
+	&.theme-dark2{
+		$baseColor1 : #a6a8b1;
+		$baseColor2 : #FFFFFF;
+		$baseColor3 : #3a3f51;
+		$baseColor4 : #b4b6bd;
+		$baseColor5 : #32374a;
+		$baseColor6 : #f6f8f8;
+		$baseColor7 : #2e3344;
+		$baseColor8 : #eff0f4;
+		$baseColor9 : #7266ba;
+		$baseColor10 : #f4f3f9;
+		
+
+
+	
+		$bodyBg : $baseColor8;
+
+ 		$menuFont : $baseColor1;
+ 		$menuHoverFont : $baseColor3;
+
+		$menuBg : $baseColor3;
+		$menuHoverBg :$baseColor3;
+
+		$menuItemFont : $baseColor4;
+		$menuItemBg : $baseColor3;
+
+		$menuItemHoverBg : $baseColor7;
+		$menuItemHoverFont : $baseColor2;
+
+		$menuItemActiveBg : $baseColor5;
+		$menuItemActiveFont : $baseColor2;
+
+		$menuItemOpenBg : $baseColor7;
+		$menuItemOpenFont : $baseColor2;
+
+
+		$headBg : $baseColor2;
+		$headFont : $baseColor3;
+
+		$headLeftBg : $baseColor9;
+		$headLeftFont : $baseColor10;
+
+		$headLeftItemHoverBg :  $baseColor9;
+
+		$headItemHoverBg : $baseColor6;
+		$headItemHoverFont : $baseColor9;
+
+
+
+		background-color: $baseColor8;
+
+		.theme-aside,.theme-aside.el-aside{
+			background-color : $menuBg;
+			// menu
+			.el-menu{
+				background-color: $menuBg;
+				color: $menuFont;
+				&:hover{
+					background-color: $menuHoverBg;
+				}
+				.el-menu-item{
+					color: $menuItemFont;
+					background-color: $menuItemBg;
+					&.is-active{
+						color : $menuItemActiveFont;
+						background-color: $menuItemActiveBg;
+					}
+					&:hover{
+						color : $menuItemHoverFont;
+						background-color: $menuItemHoverBg;
+					}
+				}
+				.el-submenu {
+					color: $menuItemFont;
+					.el-submenu__title{
+						color: $baseColor4;
+						&:hover{
+							color: $menuItemHoverFont;
+							background-color: $menuItemHoverBg;
+						}
+					}
+
+					&.is-opened{
+						color: $menuItemOpenFont;
+						.el-submenu__title{
+							color: $menuItemOpenFont;
+							background-color: $menuItemOpenBg;
+							i{
+								color: $menuItemOpenFont;
+							}
+						}
+					}
+					
+				}
+				&.el-menu--inline{
+					background-color: $menuItemOpenBg;
+					.el-menu-item{
+						background-color: $menuItemOpenBg;
+						&.is-active{
+							color: $menuItemActiveFont;
+							background-color: $menuItemActiveBg;
+						}
+					}
+				}
+	
+			}
+			//menu end
+
+		}
+		// header
+		.theme-header,.theme-header.el-header{
+			background-color: $headBg;
+			.header{
+				color : $headFont;
+				background-color: $headBg;
+				.header-left{
+
+					background-color: $headLeftBg;
+					color: $headLeftFont;
+				}
+				.header-tools{
+					.fsicon{
+						color: $baseColor5;
+					}
+					.item{
+						transition: all .25s;
+						&:hover{
+							background-color: $headItemHoverBg;
+							.fsicon{
+								color: $headItemHoverFont;
+							}
+						} 
+					}
+				}
+				.menu-btn{
+					color: $headLeftFont;
+					&:hover{
+						background-color: $headLeftItemHoverBg;
+						color: $headFont;
+					}
+				}
+			}
+		}
+	}
+
+
+	&.theme-dark3{
+		$baseColor1 : #a6a8b1;
+		$baseColor2 : #FFFFFF;
+		$baseColor3 : #3a3f51;
+		$baseColor4 : #b4b6bd;
+		$baseColor5 : #32374a;
+		$baseColor6 : #f6f8f8;
+		$baseColor7 : #2e3344;
+		$baseColor8 : #eff0f4;
+		$baseColor9 : #7266ba;
+		$baseColor10 : #f4f3f9;
+		
+
+
+	
+		$bodyBg : $baseColor8;
+
+ 		$menuFont : #363f44;
+ 		$menuHoverFont : #141719;
+
+		$menuBg : #dde6e9;
+		$menuHoverBg : #dde6e9;
+
+		$menuItemFont : #363f44;
+		$menuItemBg : #dde6e9;
+
+		$menuItemHoverBg : #f6f8f8;
+		$menuItemHoverFont : #141719;
+
+		$menuItemActiveBg : #f6f8f8;
+		$menuItemActiveFont : #141719;
+
+		$menuItemOpenBg : #e4eaec;
+		$menuItemOpenFont : #363f44;
+
+
+		$headBg : #1199c4;
+		$headFont : $baseColor2;
+
+		$headLeftBg : #1199c4;
+		$headLeftFont : $baseColor2;
+
+		$headLeftItemHoverBg :  #16aad8;
+
+		$headItemHoverBg : #16aad8;
+		$headItemHoverFont : $baseColor2;
+
+
+
+		background-color: $baseColor8;
+
+		.theme-aside,.theme-aside.el-aside{
+			background-color : $menuBg;
+			// menu
+			.el-menu{
+				background-color: $menuBg;
+				color: $menuFont;
+				&:hover{
+					background-color: $menuHoverBg;
+				}
+				.el-menu-item{
+					color: $menuItemFont;
+					background-color: $menuItemBg;
+					&.is-active{
+						color : $menuItemActiveFont;
+						background-color: $menuItemActiveBg;
+					}
+					&:hover{
+						color : $menuItemHoverFont;
+						background-color: $menuItemHoverBg;
+					}
+				}
+				.el-submenu {
+					color: $menuItemFont;
+					.el-submenu__title{
+						color: $menuItemFont;
+						&:hover{
+							color: $menuItemHoverFont;
+							background-color: $menuItemHoverBg;
+						}
+					}
+
+					&.is-opened{
+						color: $menuItemOpenFont;
+						.el-submenu__title{
+							color: $menuItemOpenFont;
+							background-color: $menuItemOpenBg;
+							i{
+								color: $menuItemOpenFont;
+							}
+						}
+					}
+					
+				}
+				&.el-menu--inline{
+					background-color: $menuItemOpenBg;
+					.el-menu-item{
+						background-color: $menuItemOpenBg;
+						&.is-active{
+							color: $menuItemActiveFont;
+							background-color: $menuItemHoverBg
+						}
+						&:hover{
+							background-color: $menuItemHoverBg;
+						}
+					}
+				}
+	
+			}
+			//menu end
+
+		}
+		// header
+		.theme-header,.theme-header.el-header{
+			background-color: $headBg;
+			.header{
+				color : $headFont;
+				background-color: $headBg;
+				&.has-bimg {
+					background-image: -webkit-gradient(linear, left 0, left 100%, from(rgba(40, 50, 60, 0)), to(rgba(40, 50, 60, 0.075)));
+					background-repeat: repeat-x;
+				}
+				.header-left{
+					background-color: $headLeftBg;
+					color: $headLeftFont;
+				}
+				.header-tools{
+					.fsicon{
+						color: $headFont;
+					}
+					.item{
+						
+						&:hover{
+							background-color: $headItemHoverBg;
+							.fsicon{
+								color: $headItemHoverFont;
+							}
+						} 
+					}
+				}
+				.menu-btn{
+					color: $headLeftFont;
+					&:hover{
+						background-color: $headLeftItemHoverBg;
+						color: $headFont;
+					}
+				}
+			}
+		}
+	}
+	
+}
