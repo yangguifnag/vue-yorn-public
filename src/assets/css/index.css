@@ -782,4 +782,35 @@ a {
     width: 0;
     height: 0; }
 
+.login-page {
+  background: #f0f2f5; }
+  .login-page .frame-panel {
+    margin-top: -50px; }
+  .login-page .logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px; }
+    .login-page .logo span {
+      font-size: 30px;
+      letter-spacing: 3px;
+      padding-left: 8px;
+      color: #355; }
+  .login-page .login-btn {
+    width: 100%; }
+  .login-page .form-item {
+    margin-top: 15px; }
+  .login-page .login-footer {
+    position: fixed;
+    width: 100%;
+    bottom: 15px;
+    text-align: center; }
+    .login-page .login-footer p {
+      font-size: 12px;
+      font-weight: lighter;
+      color: #666; }
+  .login-page .func {
+    font-size: 13px;
+    color: #08c; }
+
 /*# sourceMappingURL=index.css.map */

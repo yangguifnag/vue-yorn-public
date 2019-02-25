@@ -625,3 +625,45 @@ a{
 		height: 0;
 	}
 }
+
+.login-page{
+	background: #f0f2f5;
+	.frame-panel{
+		margin-top: -50px;
+	}
+	.logo{
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		margin-bottom: 20px;
+		span{
+			font-size: 30px;
+			letter-spacing: 3px;
+			padding-left: 8px;
+			color: #355;
+		}
+	}
+	.login-btn{
+		width: 100%;
+	}
+	.form-item{
+		margin-top: 15px;
+	}
+	.login-footer{
+		position: fixed;
+		width: 100%;
+		bottom: 15px;
+		text-align: center;
+
+		p{
+			font-size: 12px;
+			font-weight: lighter;
+			color:#666;
+		}
+		
+	}
+	.func{
+		font-size: 13px;
+		color:#08c;
+	}
+}
