@@ -1,6 +1,6 @@
-# ecif
+# vue-yorn
 
-> A Vue.js project
+> A Vue project
 
 ## Build Setup
 
