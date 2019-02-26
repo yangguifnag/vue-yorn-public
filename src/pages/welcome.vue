@@ -11,7 +11,9 @@
 				<breadcrumb></breadcrumb>
 				<div class="main-container">
 					<keep-alive :include="keepAlivePages">
-						<router-view/>
+						<transition name="yorn-router">
+							<router-view/>
+						</transition>
 					</keep-alive>
 				</div>
 			</el-main>

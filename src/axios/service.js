@@ -1,4 +1,4 @@
-import Vue from 'vue'
+
 import {get} from 'lodash'
 import axios from './api'
 import conf from './config.js'
@@ -12,12 +12,18 @@ const dparams = params => {
 	})
 }
 
-const API = p => get(service,p)
+const API = p => get(service, p)
 
 const post = (url, data) => axios.post(url, dparams(data))
 
 
 const service = {
+	menu (params = {}) {
+		return post(conf.menu, params)
+	},
+	doLogin (params = {}) {
+		return post(conf.login, params)
+	},
 	getLoginDropdown (params = {}) {
 		return post(conf.getLoginDropdown, params)
 	},
@@ -26,6 +32,7 @@ const service = {
 			return post(conf.searchInfo, params)
 		}
 	}
+
 }
 
 export default service

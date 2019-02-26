@@ -4,7 +4,8 @@
 			<div class="head-title">
 				<a class="menu-btn" :class="{'open' : !$store.state.menuIsCollapse }" @click="changeMenu" ><i class="el-icon-menu"></i></a>
 				<a class="item" >
-					i.System
+					<i-logo />
+					YORN
 				</a>
 				
 				
@@ -18,7 +19,7 @@
 					<el-tooltip content="日志" placement="top">
 						<span >
 							<el-badge is-dot :hidden="hasLog" :value="LogValue" :max="99">
-								<font-awesome-icon class="fsicon" icon="bullseye"/>
+								<f-icon class="fsicon" icon="bullseye"/>
 							</el-badge>
 						</span> 
 					</el-tooltip>
@@ -28,7 +29,7 @@
 					<el-tooltip content="消息" placement="top">
 						<span >
 							<el-badge :hidden="hasMassage" :value="MassageValue" :max="99">
-								<font-awesome-icon class="fsicon" icon="envelope"/>
+								<f-icon class="fsicon" icon="envelope"/>
 							</el-badge>
 						</span> 
 					</el-tooltip>
@@ -37,7 +38,7 @@
 				<div class="item" @click="themeDialogVisible=!themeDialogVisible">
 					<el-tooltip content="主题" placement="top">
 						<span >
-							<font-awesome-icon class="fsicon" icon="theater-masks" />
+							<f-icon class="fsicon" icon="theater-masks" />
 						</span> 
 					</el-tooltip>
 				</div>
@@ -45,13 +46,13 @@
 				<div class="item" @click="changeFullScreen">
 					<el-tooltip content="全屏" placement="top" v-show="!isFullScreen" >
 						<span >
-							<font-awesome-icon class="fsicon" icon="expand" />
+							<f-icon class="fsicon" icon="expand" />
 						</span> 
 					</el-tooltip>
 
 					<el-tooltip content="退出全屏" placement="top" v-show="isFullScreen" >
 						<span v-show="isFullScreen">
-							<font-awesome-icon class="fsicon" icon="compress" />
+							<f-icon class="fsicon" icon="compress" />
 						</span> 
 					</el-tooltip>
 
@@ -59,14 +60,14 @@
 				
 				<el-dropdown class="item" :show-timeout="100" @command="handleCommand">
 					<span class="el-dropdown-link">
-						 <font-awesome-icon class="fsicon" :icon="['fab', 'windows']" />
+						<f-icon class="fsicon" :icon="['fab', 'windows']" />
 					</span>
 					<el-dropdown-menu slot="dropdown">
 						<el-dropdown-item>个人中心</el-dropdown-item>
 						<el-dropdown-item>修改密码</el-dropdown-item>
 
 						<el-dropdown-item divided command="logOut">
-							<font-awesome-icon class="f-bs-blue" icon="power-off" />
+							<f-icon class="f-bs-blue" icon="power-off" />
 							&nbsp;退出
 						</el-dropdown-item>
 					</el-dropdown-menu>

@@ -11,6 +11,7 @@ import baseInput from '@/components/input/baseInput.vue'
 import dateInput from '@/components/input/dateInput.vue'
 import panel from '@/components/layout/panel.vue'
 import formItem from '@/components/layout/index.vue'
+import Icontainer from '@/components/layout/container.vue'
 
 Vue.component('i-icon', Iicon)
 Vue.component('i-text', Itext)
@@ -27,4 +28,7 @@ Vue.component('i-input', baseInput)
 
 Vue.component('i-date-input', dateInput)
 Vue.component('i-panel', panel)
+Vue.component('i-container', Icontainer)
+Vue.component('i-logo', import('@/components/base/i-logo'))
+
 Vue.component('y-item', formItem)

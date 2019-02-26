@@ -5,7 +5,6 @@
 
 	import './font-awesome/css/all.min.css'
 	export default{
-		
 		name : 'i-icon',
 		componentName : 'i-icon',
 

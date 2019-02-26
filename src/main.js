@@ -24,7 +24,7 @@ import 'v-contextmenu/dist/index.css'
 import VCharts from 'v-charts'
 // [ font-awesome ] 字体文件import 使用方法
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faUser, faUnlockAlt} from '@fortawesome/free-solid-svg-icons'
+import { faUser, faUnlockAlt, faPowerOff, faChartPie} from '@fortawesome/free-solid-svg-icons'
 import { faExpandArrowsAlt, faExpand, faCompress, faTheaterMasks, faCheck, faBullseye, faEnvelope, faCheckCircle, faTimesCircle, faHourglassHalf} from '@fortawesome/free-solid-svg-icons'
 import { faWindows } from '@fortawesome/free-brands-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
@@ -38,8 +38,10 @@ import './assets/css/index.css'
 
 import isys from '@/plugins'
 
+import '@/mock'
 
-library.add(faUser, faUnlockAlt)
+
+library.add(faUser, faUnlockAlt, faPowerOff, faChartPie)
 library.add(faExpandArrowsAlt, faExpand, faCompress, faWindows, faTheaterMasks, faCheck, faBullseye, faEnvelope, faCheckCircle, faTimesCircle, faHourglassHalf)
 Vue.component('f-icon', FontAwesomeIcon)
 Vue.component(CollapseTransition.name, CollapseTransition)

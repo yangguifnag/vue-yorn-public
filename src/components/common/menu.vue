@@ -37,7 +37,8 @@
 					</el-menu-item> -->
 					<el-submenu :index="item.nodeId" v-for="item of menulist" :key="item.nodeId">
 						<template slot="title">
-							<i class="el-icon-location"></i>
+							<!-- <i class="el-icon-location"></i> -->
+							<i-icon class="menu-icon" :name="item.icon"/>
 							<span class="title_menu">{{item.nodeName}}</span>
 						</template>
 						
@@ -86,10 +87,11 @@
 			// 		this.$store.commit('setMenudata',res.data)
 			// 		this.menulist = this.$store.getters.getMenuFormat
 			// })
-			this.$axios.getMenu(data) // 获取菜单数据
+			this.$axios.menu(data) // 获取菜单数据
 				.then(res => {
 					this.$store.commit('setMenudata',res.data)
 					this.menulist = this.$store.getters.getMenuFormat
+					console.log(this.menulist)
 			})
 		},
 		methods:{
@@ -137,6 +139,11 @@
  	.el-scrollbar__view{
  		height: 100%;
  		overflow-x: hidden;
+ 	}
+ 	.menu-icon{
+ 		text-align: center;
+ 		width: 24px;
+ 		margin-right:5px ;
  	}
 
  

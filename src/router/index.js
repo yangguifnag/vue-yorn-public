@@ -13,7 +13,7 @@ import handworkMerge from '@/pages/customerMerge/handworkMerge/index.vue'
 
 import baseTable from '@/pages/baseTable/index.vue'
 
-import dashboard from '@/components/pages/dashboard'
+import dashboard from '@/pages/dashboard'
 import notFound from '@/components/pages/error/404'
 
 Vue.use(Router)

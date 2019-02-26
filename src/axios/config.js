@@ -8,6 +8,7 @@ export default (config => {
 	return copy
 })({
 	'getLoginDropdown': '/getall1', // 获取机构
-	'searchInfo': '/getall'
-
+	'searchInfo': '/getall',
+	'login': '/employee/login',
+	'menu': '/menu'
 })

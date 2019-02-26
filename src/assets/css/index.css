@@ -553,7 +553,7 @@ a {
   background-color: #FFF;
   border-top: 1px solid #DCDFE6;
   border-bottom: 1px solid #DCDFE6;
-  box-shadow: 0 1px 2px #33333330;
+  box-shadow: 0 0px 1px #33333330;
   padding-left: 10px; }
   .main-breadcrumb .main-breadcrumb-title {
     font-size: 14px;
@@ -809,8 +809,32 @@ a {
       font-size: 12px;
       font-weight: lighter;
       color: #666; }
+      .login-page .login-footer p i {
+        font-weight: normal; }
   .login-page .func {
     font-size: 13px;
     color: #08c; }
+
+.yorn .yorn-container {
+  box-sizing: border-box; }
+.yorn .yorn-container {
+  padding: 5px;
+  width: 100%;
+  min-height: 100%; }
+.yorn .yorn-square-circle {
+  border-radius: 50%; }
+.yorn .dashboard .user-info-panel {
+  display: flex; }
+  .yorn .dashboard .user-info-panel .header-img {
+    width: 80px;
+    height: 80px;
+    box-shadow: 0 0 1px #333; }
+.yorn .yorn-router-enter-active {
+  transition: all .3s ease; }
+.yorn .yorn-router-leave-active {
+  transition: all .3s ease; }
+.yorn .yorn-router-enter, .yorn .yorn-router-leave-to {
+  transform: translateY(10px);
+  opacity: 0; }
 
 /*# sourceMappingURL=index.css.map */

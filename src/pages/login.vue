@@ -46,7 +46,9 @@
 		<div class="login-footer">
 			<p>
 				<span>
-					Copyright © YORN Porject
+					Copyright 
+					<i-icon name="copyright"/> 2019
+					 YORN Porject
 				</span>
 				<a>作者 @yangguifang</a>
 				<span>官网 yorn.ink</span>
@@ -95,7 +97,7 @@ export default{
 			this.$refs[formName].validate((valid) => {
 				if (valid) {
 					this.$axios.doLogin(
-						this.$qs.stringify(this.loginform)
+						this.loginform
 					).then((res) => {
 						this.$store.commit('setToken', res.data.token)
 						this.$router.push({path: '/index'})
