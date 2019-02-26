@@ -3,10 +3,10 @@
 		
 		<div class="frame-panel">
 			<div class="logo">
-				<img src="../assets/img/logo.png" height="50px">
-				<span>
+				<img src="../assets/img/logo-yorn-s.png" height="50px">
+		<!-- 		<span>
 					YORN
-				</span>
+				</span> -->
 			</div>
 			<div class="loginFormapanel">
 	<!-- 			<h3 class="t-center m-b-lg">登录</h3> -->

@@ -511,10 +511,10 @@ a {
   text-align: center;
   font-size: 20px;
   cursor: pointer; }
-  .menu-btn i {
+  .menu-btn div {
     transition: all 0.25s;
     transform: rotate(45deg); }
-  .menu-btn.open i {
+  .menu-btn.open div {
     transform: rotate(0); }
 
 .head-title a {

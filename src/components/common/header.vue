@@ -2,9 +2,8 @@
 	<div id="header" class="header">
 		<div class="header-left" :class="{'retract' : $store.state.menuIsCollapse }">
 			<div class="head-title">
-				<a class="menu-btn" :class="{'open' : !$store.state.menuIsCollapse }" @click="changeMenu" ><i class="el-icon-menu"></i></a>
+				<a class="menu-btn" :class="{'open' : !$store.state.menuIsCollapse }" @click="changeMenu" ><i-logo :size="30" /></a>
 				<a class="item" >
-					<i-logo />
 					YORN
 				</a>
 				

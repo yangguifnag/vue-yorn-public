@@ -29,6 +29,6 @@ Vue.component('i-input', baseInput)
 Vue.component('i-date-input', dateInput)
 Vue.component('i-panel', panel)
 Vue.component('i-container', Icontainer)
-Vue.component('i-logo', import('@/components/base/i-logo'))
+Vue.component('i-logo', () => import('@/components/base/i-logo'))
 
 Vue.component('y-item', formItem)

@@ -251,12 +251,12 @@ a{
 	font-size: 20px;
  
 	cursor: pointer;
-	i{
+	div{
 		transition: all .25s ;
 		transform:rotate(45deg);
 	}
 	&.open{
-		i{
+		div{
 			transform:rotate(0);
 		}
 		
