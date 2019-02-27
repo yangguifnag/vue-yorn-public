@@ -9,6 +9,7 @@
 				:source="source"
 				:responseHandle="rsh"
 				:immediate ="!0"
+				:vague = "false"
 				@allData = "pageinfo"
 				ref="datatable">
 			</i-table>
@@ -40,7 +41,7 @@ export default{
 				key: 'country',
 				name: '国家',
 				render(h,params){
-					return h('el-tag')
+					return h('el-tag',params.value)
 				}
 			} ],
 			operation: {

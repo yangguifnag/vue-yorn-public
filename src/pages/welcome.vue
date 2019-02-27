@@ -1,14 +1,14 @@
 <template>
 	<el-container class="index">
-		<el-header class="shodow theme-header" height="auto">
-			<headers></headers>
+		<el-header class="shodow theme-header yorn-header" height="auto">
+			<headers /> 
 		</el-header>
 		<el-container>
-			<el-aside width="auto" class="theme-aside">
-				<menus></menus>
+			<el-aside width="auto" class="theme-aside yorn-aside ">
+				<menus /> 
 			</el-aside>
 			<el-main>
-				<breadcrumb></breadcrumb>
+				<!-- <breadcrumb/> -->
 				<div class="main-container">
 					<keep-alive :include="keepAlivePages">
 						<transition name="yorn-router">

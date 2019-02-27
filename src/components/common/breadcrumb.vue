@@ -1,5 +1,5 @@
 <template>
-	<div class="main-breadcrumb">
+	<div class="main-breadcrumb yorn-breadcrumb">
 		<span class="main-breadcrumb-title"><i class="el-icon-location"></i>当前位置：</span>
 		<el-breadcrumb separator="/">
 			<el-breadcrumb-item :to="{ path : '/dashboard'}" v-if="isShow">Dashboard</el-breadcrumb-item>

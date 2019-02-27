@@ -1,13 +1,11 @@
 <template>
 	<div id="header" class="header">
-		<div class="header-left" :class="{'retract' : $store.state.menuIsCollapse }">
+		<div class="header-left yorn-aside-width" :class="{'retract' : $store.state.menuIsCollapse }">
 			<div class="head-title">
 				<a class="menu-btn" :class="{'open' : !$store.state.menuIsCollapse }" @click="changeMenu" ><i-logo :size="30" /></a>
 				<a class="item" >
-					YORN
+					YORN Admin
 				</a>
-				
-				
 			</div>
 		</div>
 
@@ -18,7 +16,8 @@
 					<el-tooltip content="日志" placement="top">
 						<span >
 							<el-badge is-dot :hidden="hasLog" :value="LogValue" :max="99">
-								<f-icon class="fsicon" icon="bullseye"/>
+								<!-- <f-icon class="fsicon" icon="bullseye"/> -->
+								<i-icon class="fsicon" name="bullseye"/>
 							</el-badge>
 						</span> 
 					</el-tooltip>
@@ -57,9 +56,15 @@
 
 				</div>
 				
-				<el-dropdown class="item" :show-timeout="100" @command="handleCommand">
+				<el-dropdown class="yorn-header-item item" :show-timeout="100" @command="handleCommand">
 					<span class="el-dropdown-link">
-						<f-icon class="fsicon" :icon="['fab', 'windows']" />
+						<!-- <f-icon class="fsicon" :icon="['fab', 'windows']" /> -->
+						<span class="yorn-header-user">
+							<span class="yorn-header-avater">
+								<img src="https://gw.alipayobjects.com/zos/rmsportal/BiazfanxmamNRoxxVxka.png">
+							</span>
+							<span class="yorn-header-username fsicon">{{user.name}}</span>
+						</span>
 					</span>
 					<el-dropdown-menu slot="dropdown">
 						<el-dropdown-item>个人中心</el-dropdown-item>
@@ -111,6 +116,11 @@
 	export default{
 		data () {
 			return {
+				user : {
+					name : 'Wake YORN'
+				},
+
+
 				themeDialogVisible : false,
 				hasMassage : false,
 				MassageValue : 0,

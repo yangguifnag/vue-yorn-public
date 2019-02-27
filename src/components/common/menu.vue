@@ -1,10 +1,10 @@
 <template>	
-	<div class="menus">
+	<div class="menus yorn-menu yorn-aside-width" :class="{[`yorn-aside-width-collapse`]:isCollapse }">
  			<el-scrollbar :native="false">
  				 <!-- background-color="#1b2b38" text-color="#869fb1"  -->
 	    		<el-menu class="" @open="handleOpen" @close="handleClose" :router="true"  :collapse="isCollapse" :unique-opened="true" :collapse-transition="false"  :default-active="getPath" >
 	    			<el-menu-item index="/dashboard">
-						<i class="el-icon-menu"></i>
+						<i-icon class="menu-icon" name="tachometer-alt" />
 						<span slot="title">首页</span>
 					</el-menu-item>
 
@@ -118,7 +118,6 @@
 	    background-color: #1b2b38;
 	}
 	.menus{
-		width: 100%;
 		height: 100%;
 		min-height: 100%;
 		overflow: hidden;

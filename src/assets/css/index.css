@@ -492,16 +492,15 @@ a {
   width: auto; }
 
 .el-submenu {
-  width: 220px;
+  width: auto;
   font-size: 12px; }
 
 .el-menu--inline,
 .el-submenu .el-menu-item {
-  font-weight: 100;
-  font-size: 12px !important; }
+  font-weight: 100; }
 
 .title_menu {
-  font-weight: 700; }
+  font-weight: normal; }
 
 .menu-btn {
   display: block;
@@ -578,8 +577,7 @@ a {
   background: #FFF; }
   .header .header-left {
     float: left;
-    height: 100%;
-    width: 220px; }
+    height: 100%; }
     .header .header-left.retract {
       width: 64px; }
   .header .header-right {
@@ -592,9 +590,10 @@ a {
   .header .head-title .item {
     float: left;
     height: 100%;
-    line-height: 50px; }
+    line-height: 53px; }
   .header .head-title a.item {
-    font-weight: bold;
+    font-weight: 600;
+    font-size: 20px;
     margin: 0 10px; }
   .header .header-tools .item {
     padding-top: 16px;
@@ -604,7 +603,8 @@ a {
     text-align: center;
     font-size: 18px;
     cursor: pointer;
-    transition: all .25s; }
+    transition: all .25s;
+    box-sizing: border-box; }
     .header .header-tools .item > span {
       display: block; }
     .header .header-tools .item:hover .fsicon {
@@ -836,5 +836,47 @@ a {
 .yorn .yorn-router-enter, .yorn .yorn-router-leave-to {
   transform: translateY(10px);
   opacity: 0; }
+.yorn .yorn-header {
+  box-shadow: 0 0px 4px rgba(109, 97, 97, 0.27); }
+.yorn .yorn-aside {
+  box-shadow: 2px 0 6px rgba(0, 21, 41, 0.35); }
+.yorn .yorn-menu, .yorn .yorn-aside-width {
+  width: 256px;
+  transition: all .3s; }
+  .yorn .yorn-menu.yorn-aside-width-collapse, .yorn .yorn-aside-width.yorn-aside-width-collapse {
+    width: 64px;
+    transition: all .3s; }
+.yorn .yorn-breadcrumb {
+  background: none;
+  border: none;
+  box-shadow: none; }
+.yorn .yorn-header .yorn-header-item {
+  height: 100%;
+  box-sizing: border-box;
+  padding: 0 10px;
+  cursor: pointer; }
+  .yorn .yorn-header .yorn-header-item.item {
+    width: auto; }
+.yorn .yorn-header .yorn-header-user {
+  width: 100%;
+  line-height: 50px;
+  display: inline-block; }
+  .yorn .yorn-header .yorn-header-user span {
+    vertical-align: top; }
+  .yorn .yorn-header .yorn-header-user .yorn-header-avater {
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    margin-right: 5px;
+    margin-top: 12px;
+    display: inline-block; }
+    .yorn .yorn-header .yorn-header-user .yorn-header-avater img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      vertical-align: middle; }
+  .yorn .yorn-header .yorn-header-user .yorn-header-username {
+    font-weight: lighter;
+    font-size: 12px; }
 
 /*# sourceMappingURL=index.css.map */

@@ -1,7 +1,16 @@
 <template>
 	<keep-alive>
-	<div class="" v-loading="loading">
+	<div class="yorn-datatable" v-loading="loading">
 		<div class="data-table-header">
+			<div class="pull-left">
+				<el-input
+				    size="small"
+				    placeholder="请输入查询内容"
+				    v-model="searchInput"
+				    @change="searchFunc"
+				    clearable>
+				</el-input>
+			</div>
 			<div class="pull-right">
 				<el-tooltip class="item" effect="dark" content="刷新表格数据" placement="top-end">
 				 	<el-button icon="el-icon-refresh" size="small" circle @click="handleRefresh"></el-button>
@@ -91,7 +100,11 @@ export default {
 		},
 		immediate : {
 			type : [Boolean],
-			default: () => !1
+			default: false
+		},
+		vague : {
+			type : Boolean,
+			default : true
 		}
 	},
 	watch: {
@@ -104,6 +117,7 @@ export default {
 		formData: {
 			handler (val) {
 				this.responseData = {}
+				this._allTableData = []
 				this.allTableData = []
 				this.showTableData = []
 				this.formData = val
@@ -120,8 +134,11 @@ export default {
 	},
 	data () {
 		return {
+			searchField : [],
+			searchInput : '',
 			paging : true,
 			responseData: {},
+			_allTableData : [],
 			allTableData: [],
 			showTableData: [],
 			loading: false,
@@ -137,6 +154,8 @@ export default {
 		if(this.immediate){
 			this.getTableData()
 		}
+		this.searchField = this.columns.map(i => i.key)
+		 
 	},
 	components : {
 		renderDom : {
@@ -159,13 +178,33 @@ export default {
 			}
 		}
 	},
+	computed : {
+		// showTableData(){
+		// 	return
+		// }
+	},
 	methods: {
+		searchFunc(){
+			let _dataList = this._allTableData.filter(i => {
+				let flag = this.searchField.filter(n => {
+					return i[n] !== undefined ? this.vague ?
+						(i[n]+'').toLowerCase().includes(this.searchInput.toLowerCase()) :
+						(i[n]+'').toLowerCase() === this.searchInput.toLowerCase() :
+						false
+				})
+				return !this.searchInput || flag.length
+
+			})
+			this.allTableData = _dataList
+			this.render ()
+		},
 		getServer(str){
 			let _chain = str ? (str.split('.').length ? str.split('.') : [str]) : []
 			return _chain.reduce((_,item) => _[item], this.$axios)
 		},
 		initTable () {
 			this.responseData = {}
+			this._allTableData = []
 			this.allTableData = []
 		 	this.showTableData = []
 		 	this.pages.currentPage = 1
@@ -196,6 +235,7 @@ export default {
 			this.getServer(this.source)(data).then(res => {
 				this.responseData = this.formatResponseData(this.responseHandle(res.data))
 				this.allTableData = this.formatTableData(this.responseData.rows)
+				this._allTableData = Object.assign([],this.allTableData)
 				this.render()
 				this.loading = false
 				if (option.msg) {
