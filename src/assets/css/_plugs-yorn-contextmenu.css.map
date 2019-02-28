@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAEA,iBAAiB;EAChB,QAAQ,EAAE,QAAQ;EAClB,UAAU,EAAE,0BAAsB;EAClC,UAAU,EAAE,UAAU;EACtB,gBAAgB,EAAE,IAAI;EACtB,MAAM,EAAE,IAAI;EACZ,KAAK,EAAE,IAAI;EACX,aAAa,EAAE,GAAG;EAClB,MAAM,EAAE,OAAO;EACf,IAAI,EAAE,CAAC;EACP,GAAG,EAAE,CAAC;EACN,OAAO,EAAE,KAAK",
+"sources": ["../sass/_plugs-yorn-contextmenu.scss"],
+"names": [],
+"file": "_plugs-yorn-contextmenu.css"
+}

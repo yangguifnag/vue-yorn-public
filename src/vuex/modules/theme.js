@@ -4,27 +4,27 @@ export default {
 	namespaced: true,
 	state: {
 		themeList: setting.theme.list,
-		activeTheme: setting.theme.name
+		activeTheme: setting.theme.list[0].name
 	},
 	getters: {
 		activeThemeInfo (state) {
 			return state.themeList.find(item => item.name === state.activeTheme)
 		}
 	},
-	mutatios: {
+	mutations: {
 		updataTheme (state, val) {
 			state.activeTheme = val
 		}
 	},
-	action: {
+	actions: {
 		set ({
 			state,
 			commit,
 			dispatch
 		}, themeName) {
 			return new Promise(async resolve => {
-				state.activeTheme = state.list.find(e => e.name === themeName) ? themeName : state.themeList[0].name
-				commit('updataTheme')
+				let activeTheme = state.list.find(e => e.name === themeName) ? themeName : state.themeList[0].name
+				commit('updataTheme',activeTheme)
 				await dispatch('yorn/db/set', {
 					dbName: 'sys',
 					path: 'theme.activeTheme',
@@ -38,13 +38,13 @@ export default {
 		},
 		load ({state, commit, dispatch}) {
 			return new Promise(async resolve => {
-				state.activeTheme = await dispatch('yorn/db/get', {
+				let activeTheme = await dispatch('yorn/db/get', {
 					dbName: 'sys',
 					path: 'theme.activeTheme',
 					defaultValue: state.themeList[0].name,
 					user: true
 				}, {root: true})
-				commit('updataTheme')
+				commit('updataTheme',activeTheme)
 				resolve()
 			})
 		}

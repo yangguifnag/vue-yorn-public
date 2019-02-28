@@ -6,6 +6,6 @@ files.keys().forEach(key => {
 })
 
 export default {
-	namespace: true,
+	namespaced: true,
 	modules
 }

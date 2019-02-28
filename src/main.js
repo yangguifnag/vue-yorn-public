@@ -6,8 +6,8 @@ import Vuex from 'vuex'
 import App from './App'
 
 import router from './router'
-import store from './vuex/store'
-import vuexx from '@/vuex/index'
+// import store from './vuex/store'
+import store from '@/vuex/index'
 
 import service from './axios/service'
 
@@ -49,7 +49,7 @@ Vue.component(CollapseTransition.name, CollapseTransition)
 Vue.use(isys)
 Vue.use(ElementUI)
 Vue.use(VCharts)
-Vue.use(Vuex)
+// Vue.use(Vuex)
 Vue.use(contentmenu)
 
 Vue.config.productionTip = false
@@ -60,10 +60,11 @@ Vue.prototype.$utils = iutils
 Vue.prototype.$vT = vT
 
 router.beforeEach((to, from, next) => { // 全局路由拦截钩子
+	console.log(store)
 	if (to.name === 'login') {
 		next()
 	} else {
-		if (store.getters.getToken) {
+		if (store.getters['yorn/user/getToken']) {
 			next()
 		} else {
 			next({path: '/'})
@@ -75,7 +76,7 @@ router.afterEach((to, from) => {
 	NProgress.start()
 })
 
-new Vue({
+new Vue ({
 	el: '#app',
 	router,
 	store,

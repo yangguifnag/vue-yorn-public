@@ -59,6 +59,7 @@
 </template>
 <script>
 
+import {mapActions, mapState ,mapMutations} from 'vuex'
 
 export default{
 	data () {
@@ -93,13 +94,14 @@ export default{
 		}
 	},
 	methods: {
+		...mapMutations('yorn/user',['setToken']),
 		submitForm (formName) {
 			this.$refs[formName].validate((valid) => {
 				if (valid) {
 					this.$axios.doLogin(
 						this.loginform
 					).then((res) => {
-						this.$store.commit('setToken', res.data.token)
+						this.setToken(res.data.token)
 						this.$router.push({path: '/index'})
 					}).catch((err) => {
 						this.$message({

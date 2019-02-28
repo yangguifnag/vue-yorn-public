@@ -1,6 +1,11 @@
 <template>
 	<i-container class="dashboard">
-		<el-card shadow="hover">
+		<i-menu
+			:show.sync="menuShow"
+			:x.sync="menuX"
+			:y.sync="menuY"
+		>sadfasfasf</i-menu>
+		<el-card shadow="hover" @contextmenu.native="handleContextmenu">
 			<div class="user-info-panel">
 				<div class="avater">
 					<img class="yorn-square-circle header-img" src="../../assets/img/head.jpg">
@@ -17,7 +22,18 @@
 	export default {
 		data() {
 			return {
-
+				menuShow : false,
+				menuX : 0,
+				menuY : 0
+			}
+		},
+		methods : {
+			handleContextmenu(event){
+				event.preventDefault()
+        		event.stopPropagation()
+        		this.menuX = event.clientX
+        		this.menuY = event.clientY
+        		this.menuShow = true
 			}
 		}
 

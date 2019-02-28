@@ -1,8 +1,8 @@
 <template>	
-	<div class="menus yorn-menu yorn-aside-width" :class="{[`yorn-aside-width-collapse`]:isCollapse }">
+	<div class="menus yorn-menu yorn-aside-width" :class="{[`yorn-aside-width-collapse`]:getMenuIsCollapse }">
  			<el-scrollbar :native="false">
  				 <!-- background-color="#1b2b38" text-color="#869fb1"  -->
-	    		<el-menu class="" @open="handleOpen" @close="handleClose" :router="true"  :collapse="isCollapse" :unique-opened="true" :collapse-transition="false"  :default-active="getPath" >
+	    		<el-menu class="" @open="handleOpen" @close="handleClose" :router="true"  :collapse="getMenuIsCollapse" :unique-opened="true" :collapse-transition="false"  :default-active="getPath" >
 	    			<el-menu-item index="/dashboard">
 						<i-icon class="menu-icon" name="tachometer-alt" />
 						<span slot="title">首页</span>
@@ -56,6 +56,7 @@
 
 <script>
 	
+	import {mapActions, mapState ,mapMutations ,mapGetters} from 'vuex'
 	export default{
 		data(){
 			return {
@@ -67,9 +68,10 @@
 			
 		},
 		computed : {
-			isCollapse(){
-				return this.$store.state.menuIsCollapse
-			},
+			...mapGetters('yorn/menu',['getMenuIsCollapse']),
+			// isCollapse(){
+			// 	return this.$store.state.menuIsCollapse
+			// },
 			getPath(){
 				 
 				return this.$route.path
@@ -91,7 +93,6 @@
 				.then(res => {
 					this.$store.commit('setMenudata',res.data)
 					this.menulist = this.$store.getters.getMenuFormat
-					console.log(this.menulist)
 			})
 		},
 		methods:{

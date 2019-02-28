@@ -8,7 +8,7 @@ import setting from '@/setting.js'
 const isKeepAlive = data => get(data, 'meta.cache', false)
 
 export default {
-	namespace: true,
+	namespaced: true,
 	state: {
 
 		pool: [],

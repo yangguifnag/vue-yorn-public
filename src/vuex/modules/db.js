@@ -1,4 +1,6 @@
 import db from '@/lib/db.js'
+import {cloneDeep} from 'lodash'
+
 
 function initPath ({
 	dbName = 'database',
@@ -17,7 +19,7 @@ function initPath ({
 }
 
 export default {
-	namespace: true,
+	namespaced: true,
 	actions: {
 
 		set (context, {
@@ -40,12 +42,12 @@ export default {
 			user = false
 		}) {
 			return new Promise(resolve => {
-				resolve(db.get(initPath({
+				resolve(cloneDeep(db.get(initPath({
 					dbName,
 					path,
 					user,
 					defaultValue
-				})).value())
+				})).value()))
 			})
 		},
 

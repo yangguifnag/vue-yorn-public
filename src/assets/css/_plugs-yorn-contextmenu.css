@@ -1,0 +1,14 @@
+.yorn-contextmenu {
+  position: absolute;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+  box-sizing: box-sizing;
+  background-color: #FFF;
+  height: 80px;
+  width: 80px;
+  border-radius: 3px;
+  cursor: pointer;
+  left: 0;
+  top: 0;
+  display: block; }
+
+/*# sourceMappingURL=_plugs-yorn-contextmenu.css.map */

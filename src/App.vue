@@ -1,10 +1,11 @@
 <template>
-	<div id="app" class="theme yorn" :class="theme">
+	<div id="app" class="theme yorn" :class="activeTheme">
 		<router-view/>
 	</div>
 </template>
 
 <script>
+	import {mapActions, mapState ,mapMutations} from 'vuex'
 	export default {
 		name: 'App',
 		data(){
@@ -15,23 +16,29 @@
 		},
 		mounted (){
 			let that = this;
-			
-			that.$store.commit('setWindowWidth',that.$data.windowWidth)
-			that.$store.commit('setWindowHeight',that.$data.windowHeight)
-			this.$store.commit(that.$data.windowWidth < 1250 ? 'closeMenuIsCollapse' : 'openMenuIsCollapse')
+			this.load()
+			this.updateMenuCollapse()
 			window.onresize = () => { //监听屏幕变化
-				 
 				that.$data.windowWidth = document.body.clientWidth
 				that.$data.windowHeight = document.body.clientHeight
-				that.$store.commit('setWindowWidth',that.$data.windowWidth)
-				that.$store.commit('setWindowHeight',that.$data.windowHeight)
-				this.$store.commit(that.$data.windowWidth < 1250 ? 'closeMenuIsCollapse' : 'openMenuIsCollapse')
-				
+				this.updateMenuCollapse()
 			}
+
 		},
 		computed : {
-			theme(){
-				return this.$store.state.theme
+			// theme(){
+			// 	return this.$store.state.theme
+			// },
+			...mapState('yorn/theme',['activeTheme'])
+		},
+		methods : {
+			...mapActions('yorn/theme',['load']),
+			...mapMutations('yorn/options',['updateWindowWidth','updateWindowHeight']),
+			...mapMutations('yorn/menu',['updateMenuIsCollapse']),
+			updateMenuCollapse(){
+				this.updateWindowWidth(this.windowWidth)
+				this.updateWindowHeight(this.windowHeight)
+				this.updateMenuIsCollapse(this.windowWidth < 1250 ? true: false)
 			}
 		}
 

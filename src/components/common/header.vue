@@ -1,8 +1,8 @@
 <template>
 	<div id="header" class="header">
-		<div class="header-left yorn-aside-width" :class="{'retract' : $store.state.menuIsCollapse }">
+		<div class="header-left yorn-aside-width" :class="{'retract' : getMenuIsCollapse }">
 			<div class="head-title">
-				<a class="menu-btn" :class="{'open' : !$store.state.menuIsCollapse }" @click="changeMenu" ><i-logo :size="30" /></a>
+				<a class="menu-btn" :class="{'open' : !getMenuIsCollapse }" @click="changeMenu" ><i-logo :size="30" /></a>
 				<a class="item" >
 					YORN Admin
 				</a>
@@ -91,7 +91,7 @@
 			</div>
 			<el-dialog title="主题" :visible.sync="themeDialogVisible" width="30%" :append-to-body="true" >
 
-			  	 <div class="theme-overview " :class="[theme == item.name ? 'theme-check' : '']" v-for="item of themes" :style="{backgroundColor: item.body}" @click="changetheme(item.name)">
+			  	 <div class="theme-overview " :class="[activeTheme === item.name ? 'theme-check' : '']" v-for="item of themeList" :style="{backgroundColor: item.body}" @click="changetheme(item.name)">
 			  	 	<p class="clr-box clr-header" :style="{backgroundColor: item.head}"></p>
 			  	 	<p class="clr-box clr-header" :style="{backgroundColor: item.head2}"></p>
 			  	 	<p class="clr-box" :style="{backgroundColor: item.menu}"></p>
@@ -112,7 +112,7 @@
 	</div>
 </template>
 <script>
-	
+	import {mapActions, mapState ,mapMutations ,mapGetters} from 'vuex'
 	export default{
 		data () {
 			return {
@@ -127,38 +127,16 @@
 				massageDialogVisible : false,
 
 				hasLog : false,
-				LogValue : 0,
-				themes : [{
-					'name' : 'theme-dark',
-					'body' : '#eff0f4',
-					'head' : '#FFFFFF',
-					'head2' : '#FFFFFF',
-					'menu' : '#1b2b38',
-					'point' : '#42b983'
- 				},{
-					'name' : 'theme-dark2',
-					'body' : '#eff0f4',
-					'head' : '#7266ba',
-					'head2' : '#FFFFFF',
-					'menu' : '#3a3f51',
-					'point' : '#FFFFFF'
- 				},{
-					'name' : 'theme-dark3',
-					'body' : '#eff0f4',
-					'head' : '#16aad8',
-					'head2' : '#16aad8',
-					'menu' : '#dde6e9',
-					'point' : '#FFFFFF'
- 				}]
+				LogValue : 0
 			}
 		},
-  
+  		
 		methods : {
 			handleCommand(command){
 				this[command]()
 			},
 			changeMenu(){
-				this.$store.commit('changeMenuIsCollapse')
+				this.changeMenuIsCollapse()
 			},
 			changeFullScreen(){
 				!this.$store.state.isFullScreen ? this.$utils.fullScreen() : this.$utils.exitScreen()
@@ -177,18 +155,23 @@
 					return !1;
 				})
 			},
-			changetheme(name){
-				this.$store.commit('setTheme',name)			
-			}
+			async changetheme(name){
+				//this.$store.commit('setTheme',name)
+				await this.set(name)
+			},
+			...mapActions('yorn/theme',['set']),
+			...mapMutations('yorn/menu',['changeMenuIsCollapse'])
 
 		},
 		computed : {
 			isFullScreen(){
 				return this.$store.state.isFullScreen
 			},
-			theme(){
-				return this.$store.state.theme
-			}
+			// theme(){
+			// 	return this.$store.state.theme
+			// },
+			...mapGetters('yorn/menu',['getMenuIsCollapse']),
+			...mapState('yorn/theme',['themeList','activeTheme'])
 
 		}
 	}
