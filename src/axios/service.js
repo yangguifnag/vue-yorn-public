@@ -1,43 +1,14 @@
+const prefix = ''// '/api/v1' // 前缀
 
-import {get} from 'lodash'
-import axios from './api'
-import conf from './config.js'
-import qs from 'qs'
-import store from '@/vuex/store.js'
-
-const dparams = params => {
-	return qs.stringify({
-		token: store.state.token,
-		...params
+export default (config => {
+	let copy = {}
+	Object.keys(config).forEach((val) => {
+		copy[val] = `${prefix}${config[val]}`
 	})
-}
-
-const API = p => get(service, p)
-
-const post = (url, data) => axios.post(url, dparams(data))
-
-
-const service = {
-	menu (params = {}) {
-		return post(conf.menu, params)
-	},
-	doLogin (params = {}) {
-		return post(conf.login, params)
-	},
-	getLoginDropdown (params = {}) {
-		return post(conf.getLoginDropdown, params)
-	},
-	aa: {
-		searchInfo (params = {}) {
-			return post(conf.searchInfo, params)
-		}
-	}
-
-}
-
-export default service
-
-export {
-	API,
-	service
-}
+	return copy
+})({
+	'getLoginDropdown': '/getall1', // 获取机构
+	'searchInfo': '/getall',
+	'login': '/employee/login',
+	'menu': '/menu'
+})

@@ -23,8 +23,8 @@ export default {
 			dispatch
 		}, themeName) {
 			return new Promise(async resolve => {
-				let activeTheme = state.list.find(e => e.name === themeName) ? themeName : state.themeList[0].name
-				commit('updataTheme',activeTheme)
+				let activeTheme = state.themeList.find(e => e.name === themeName) ? themeName : state.themeList[0].name
+				commit('updataTheme', activeTheme)
 				await dispatch('yorn/db/set', {
 					dbName: 'sys',
 					path: 'theme.activeTheme',
@@ -44,7 +44,7 @@ export default {
 					defaultValue: state.themeList[0].name,
 					user: true
 				}, {root: true})
-				commit('updataTheme',activeTheme)
+				commit('updataTheme', activeTheme)
 				resolve()
 			})
 		}

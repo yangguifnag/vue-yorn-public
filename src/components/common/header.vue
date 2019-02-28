@@ -10,13 +10,11 @@
 		</div>
 
 		<div class="header-right">
-			
 			<div class="header-tools clear">
 				<div class="item">
 					<el-tooltip content="日志" placement="top">
 						<span >
 							<el-badge is-dot :hidden="hasLog" :value="LogValue" :max="99">
-								<!-- <f-icon class="fsicon" icon="bullseye"/> -->
 								<i-icon class="fsicon" name="bullseye"/>
 							</el-badge>
 						</span> 
@@ -61,9 +59,9 @@
 						<!-- <f-icon class="fsicon" :icon="['fab', 'windows']" /> -->
 						<span class="yorn-header-user">
 							<span class="yorn-header-avater">
-								<img src="https://gw.alipayobjects.com/zos/rmsportal/BiazfanxmamNRoxxVxka.png">
+								<img :src="userInfo.avater">
 							</span>
-							<span class="yorn-header-username fsicon">{{user.name}}</span>
+							<span class="yorn-header-username fsicon">{{userInfo.name}}</span>
 						</span>
 					</span>
 					<el-dropdown-menu slot="dropdown">
@@ -116,21 +114,14 @@
 	export default{
 		data () {
 			return {
-				user : {
-					name : 'Wake YORN'
-				},
-
-
 				themeDialogVisible : false,
 				hasMassage : false,
 				MassageValue : 0,
 				massageDialogVisible : false,
-
 				hasLog : false,
 				LogValue : 0
 			}
 		},
-  		
 		methods : {
 			handleCommand(command){
 				this[command]()
@@ -138,41 +129,38 @@
 			changeMenu(){
 				this.changeMenuIsCollapse()
 			},
-			changeFullScreen(){
-				!this.$store.state.isFullScreen ? this.$utils.fullScreen() : this.$utils.exitScreen()
-				this.$store.commit('changeIsFullScreen',!this.$store.state.isFullScreen)
-			},
 			logOut(){
 				this.$confirm('确定退出登录吗?','提示',{
 					confirmButtonText: '确定',
 		          	cancelButtonText: '取消',
 		          	type: 'warning',
 				}).then(()=>{
-
-					this.$store.dispatch('destroyBaseInfo')
+					this.updateUserInfo({})
 					this.$router.replace({ path: '/' })
 				}).catch(()=>{
 					return !1;
 				})
 			},
 			async changetheme(name){
-				//this.$store.commit('setTheme',name)
 				await this.set(name)
 			},
+			async geUserInfo(){
+				await this.loadUserInfo()
+			},
 			...mapActions('yorn/theme',['set']),
-			...mapMutations('yorn/menu',['changeMenuIsCollapse'])
+			...mapMutations('yorn/menu',['changeMenuIsCollapse']),
+			...mapActions('yorn/options',['changeFullScreen']),
+			...mapActions('yorn/user',['loadUserInfo','updateUserInfo'])
 
 		},
 		computed : {
-			isFullScreen(){
-				return this.$store.state.isFullScreen
-			},
-			// theme(){
-			// 	return this.$store.state.theme
-			// },
+			...mapState('yorn/options',['isFullScreen']),
 			...mapGetters('yorn/menu',['getMenuIsCollapse']),
-			...mapState('yorn/theme',['themeList','activeTheme'])
-
+			...mapState('yorn/theme',['themeList','activeTheme']),
+			...mapState('yorn/user',['userInfo'])
+		},
+		created(){
+			this.geUserInfo()
 		}
 	}
 

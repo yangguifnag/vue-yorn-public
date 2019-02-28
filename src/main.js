@@ -2,18 +2,15 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import 'babel-polyfill'
 import Vue from 'vue'
-import Vuex from 'vuex'
 import App from './App'
 
-import router from './router'
+import router from '@/router/index'
 // import store from './vuex/store'
 import store from '@/vuex/index'
 
-import service from './axios/service'
+import api from '@/axios/api'
 
 import qs from 'qs'
-
-import NProgress from 'nprogress'
 
 import iutils from '@/lib/iutils.js'
 import vT from '@/lib/vueTool.js'
@@ -53,28 +50,11 @@ Vue.use(VCharts)
 Vue.use(contentmenu)
 
 Vue.config.productionTip = false
-Vue.prototype.$axios = service
+Vue.prototype.$axios = api
 Vue.prototype.$store = store
 Vue.prototype.$qs = qs
 Vue.prototype.$utils = iutils
 Vue.prototype.$vT = vT
-
-router.beforeEach((to, from, next) => { // 全局路由拦截钩子
-	console.log(store)
-	if (to.name === 'login') {
-		next()
-	} else {
-		if (store.getters['yorn/user/getToken']) {
-			next()
-		} else {
-			next({path: '/'})
-		}
-	}
-	NProgress.done()
-})
-router.afterEach((to, from) => {
-	NProgress.start()
-})
 
 new Vue ({
 	el: '#app',

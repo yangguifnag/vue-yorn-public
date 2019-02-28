@@ -95,13 +95,15 @@ export default{
 	},
 	methods: {
 		...mapMutations('yorn/user',['setToken']),
+		...mapActions('yorn/user',['setUserInfo']),
 		submitForm (formName) {
 			this.$refs[formName].validate((valid) => {
 				if (valid) {
 					this.$axios.doLogin(
 						this.loginform
-					).then((res) => {
+					).then(async (res) => {
 						this.setToken(res.data.token)
+						await this.setUserInfo(res.data.data)
 						this.$router.push({path: '/index'})
 					}).catch((err) => {
 						this.$message({

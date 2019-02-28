@@ -1,5 +1,5 @@
 import log from './util.log.js'
-
+import jsCookie from 'js-cookie'
 
 let iutils = {
 	debug: true,
@@ -32,9 +32,26 @@ let iutils = {
 		if (typeof cfs !== 'undefined' && cfs) {
 			cfs.call(el)
 		}
+	},
+	cookie: {
+		set (name = 'yornsys', value = '', options = {}) {
+			const base = {
+				expires: 1
+			}
+			Object.assign(base, options)
+			return jsCookie.set(name, value, options)
+		},
+		get (name = 'yornsys') {
+			return jsCookie.get(name)
+		},
+		getAll () {
+			return jsCookie.get()
+		},
+		remove (name = 'yornsys') {
+			return jsCookie.remove(name)
+		}
+
 	}
-
-
 }
 
 export default iutils

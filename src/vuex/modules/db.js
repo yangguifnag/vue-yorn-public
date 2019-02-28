@@ -1,6 +1,6 @@
 import db from '@/lib/db.js'
 import {cloneDeep} from 'lodash'
-
+import utils from '@/lib/iutils'
 
 function initPath ({
 	dbName = 'database',
@@ -9,7 +9,8 @@ function initPath ({
 	validator = () => true,
 	defaultValue = ''
 }) {
-	const userid = 'test'
+	const userid = utils.cookie.get('userid') || 'yorn-uuid'
+	console.log(userid)
 	const currentPath = `${dbName}.${user ? `user.${userid}` : 'anonymous'}${path ? `.${path}` : ''}`
 	const value = db.get(currentPath).value()
 	if (!(value !== undefined && validator(value))) {
