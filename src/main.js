@@ -37,6 +37,8 @@ import isys from '@/plugins'
 
 import '@/mock'
 
+import yornPlugins from '@/plugins/yorn-plugins/index'
+
 
 library.add(faUser, faUnlockAlt, faPowerOff, faChartPie)
 library.add(faExpandArrowsAlt, faExpand, faCompress, faWindows, faTheaterMasks, faCheck, faBullseye, faEnvelope, faCheckCircle, faTimesCircle, faHourglassHalf)
@@ -48,6 +50,7 @@ Vue.use(ElementUI)
 Vue.use(VCharts)
 // Vue.use(Vuex)
 Vue.use(contentmenu)
+Vue.use(yornPlugins)
 
 Vue.config.productionTip = false
 Vue.prototype.$axios = api
@@ -56,10 +59,14 @@ Vue.prototype.$qs = qs
 Vue.prototype.$utils = iutils
 Vue.prototype.$vT = vT
 
-new Vue ({
+new Vue({
 	el: '#app',
 	router,
 	store,
 	components: { App },
-	template: '<App/>'
+	template: '<App/>',
+	mounted () {
+		this.$store.dispatch('yorn/account/load')
+	}
+
 })

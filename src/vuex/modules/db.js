@@ -10,7 +10,6 @@ function initPath ({
 	defaultValue = ''
 }) {
 	const userid = utils.cookie.get('userid') || 'yorn-uuid'
-	console.log(userid)
 	const currentPath = `${dbName}.${user ? `user.${userid}` : 'anonymous'}${path ? `.${path}` : ''}`
 	const value = db.get(currentPath).value()
 	if (!(value !== undefined && validator(value))) {

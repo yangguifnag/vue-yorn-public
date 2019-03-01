@@ -10,5 +10,6 @@ export default (config => {
 	'getLoginDropdown': '/getall1', // 获取机构
 	'searchInfo': '/getall',
 	'login': '/employee/login',
-	'menu': '/menu'
+	'menu': '/menu',
+	'logout': '/logout'
 })

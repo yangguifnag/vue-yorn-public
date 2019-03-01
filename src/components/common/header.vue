@@ -95,7 +95,7 @@
 			  	 	<p class="clr-box" :style="{backgroundColor: item.menu}"></p>
 			  	 	<p class="clr-point" :style="{backgroundColor: item.point}"></p>
 			  	 	<span class="check-hock">
-			  	 		<font-awesome-icon class="" icon="check" />
+			  	 		<i-icon name="check" />
 			  	 	</span>
 			  	 </div>
 			 
@@ -134,8 +134,8 @@
 					confirmButtonText: '确定',
 		          	cancelButtonText: '取消',
 		          	type: 'warning',
-				}).then(()=>{
-					this.updateUserInfo({})
+				}).then(async ()=>{
+					await this.logout({})
 					this.$router.replace({ path: '/' })
 				}).catch(()=>{
 					return !1;
@@ -144,13 +144,11 @@
 			async changetheme(name){
 				await this.set(name)
 			},
-			async geUserInfo(){
-				await this.loadUserInfo()
-			},
 			...mapActions('yorn/theme',['set']),
-			...mapMutations('yorn/menu',['changeMenuIsCollapse']),
+			...mapActions('yorn/menu',['changeMenuIsCollapse']),
 			...mapActions('yorn/options',['changeFullScreen']),
-			...mapActions('yorn/user',['loadUserInfo','updateUserInfo'])
+			...mapActions('yorn/account',['logout'])
+
 
 		},
 		computed : {
@@ -158,9 +156,6 @@
 			...mapGetters('yorn/menu',['getMenuIsCollapse']),
 			...mapState('yorn/theme',['themeList','activeTheme']),
 			...mapState('yorn/user',['userInfo'])
-		},
-		created(){
-			this.geUserInfo()
 		}
 	}
 

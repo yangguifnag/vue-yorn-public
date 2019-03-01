@@ -836,12 +836,29 @@ a {
   min-height: 100%; }
 .yorn .yorn-square-circle {
   border-radius: 50%; }
+.yorn .dashboard .user-info-card {
+  display: flex;
+  justify-content: space-between; }
 .yorn .dashboard .user-info-panel {
   display: flex; }
   .yorn .dashboard .user-info-panel .header-img {
     width: 80px;
     height: 80px;
     box-shadow: 0 0 1px #333; }
+  .yorn .dashboard .user-info-panel .user-title {
+    margin-left: 20px; }
+    .yorn .dashboard .user-info-panel .user-title .user-title-welcome {
+      line-height: 40px;
+      margin-bottom: 15px;
+      font-size: 20px;
+      font-weight: 500; }
+    .yorn .dashboard .user-info-panel .user-title .user-title-word {
+      font-size: 14px;
+      color: #888;
+      font-weight: lighter; }
+  .yorn .dashboard .user-info-panel .user-right-box {
+    flex: 2;
+    height: 100%; }
 .yorn .yorn-router-enter-active {
   transition: all .3s ease; }
 .yorn .yorn-router-leave-active {

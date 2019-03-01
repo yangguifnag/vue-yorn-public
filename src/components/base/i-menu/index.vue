@@ -68,7 +68,6 @@
 			document.querySelector('body').appendChild(this.$el)
 			this.$nextTick(() => {
 				this.elWidth = this.$el.offsetWidth
-				console.log(this.$el.offsetWidth)
 			})
 		}
 

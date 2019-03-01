@@ -1,10 +1,11 @@
 import log from './util.log.js'
 import jsCookie from 'js-cookie'
+import timeUT from './util.time.js'
 
 let iutils = {
 	debug: true,
 	log,
-
+	time: timeUT,
 	c_log: (str = '') => {
 		if (this.debug) {
 			console.log(str)

@@ -688,6 +688,10 @@ a{
 		border-radius: 50%;
 	}
 	.dashboard{
+		.user-info-card{
+			display: flex;
+			 justify-content :space-between;
+		}
 		.user-info-panel{
 			display: flex;
 			
@@ -695,6 +699,24 @@ a{
 				width: 80px;
 				height: 80px;
 				box-shadow: 0 0 1px #333;
+			}
+			.user-title{
+				margin-left: 20px;
+				.user-title-welcome{
+					line-height: 40px;
+					margin-bottom: 15px;
+					font-size: 20px;
+					font-weight: 500;
+				}
+				.user-title-word{
+					font-size: 14px;
+					color: #888;
+					font-weight: lighter;
+				}
+			}
+			.user-right-box{
+				flex :2;
+				height: 100%;
 			}
 		}
 		.user-title{

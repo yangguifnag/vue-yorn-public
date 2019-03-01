@@ -35,7 +35,7 @@
 						<i class="el-icon-menu"></i>
 						<span slot="title">首页1</span>
 					</el-menu-item> -->
-					<el-submenu :index="item.nodeId" v-for="item of menulist" :key="item.nodeId">
+					<el-submenu :index="item.nodeId" v-for="item of getMenu" :key="item.nodeId">
 						<template slot="title">
 							<!-- <i class="el-icon-location"></i> -->
 							<i-icon class="menu-icon" :name="item.icon"/>
@@ -65,37 +65,28 @@
 				//isCollapse: true,
 				menulist : [],
 			}
-			
 		},
 		computed : {
-			...mapGetters('yorn/menu',['getMenuIsCollapse']),
+			...mapGetters('yorn/menu',['getMenuIsCollapse','getMenu']),
 			// isCollapse(){
 			// 	return this.$store.state.menuIsCollapse
 			// },
 			getPath(){
-				 
 				return this.$route.path
 			}
 		},
 		created(){
-		 
-
 			var data = this.$qs.stringify({
 				token : this.$store.state.token,
 				employeeNumber : 'Iadmin'
 			})
-			// this.$axios.post('/api/v1/menu/search/menu',data) // 获取菜单数据
-			// 	.then(res => {
-			// 		this.$store.commit('setMenudata',res.data)
-			// 		this.menulist = this.$store.getters.getMenuFormat
-			// })
 			this.$axios.menu(data) // 获取菜单数据
 				.then(res => {
-					this.$store.commit('setMenudata',res.data)
-					this.menulist = this.$store.getters.getMenuFormat
+					this.setMenuList(res.data)
 			})
 		},
 		methods:{
+			...mapActions('yorn/menu',['setMenuList','loadMenuList']),
 			getID(id){
 				return id;
 			},
@@ -103,10 +94,10 @@
 
 			},
 			handleOpen(key, keyPath) {
-		        console.log(key, keyPath);
+		        //console.log(key, keyPath);
 	      	},
 	      	handleClose(key, keyPath) {
-		        console.log(key, keyPath);
+		       //  console.log(key, keyPath);
 	      	}
 		}
 	}
