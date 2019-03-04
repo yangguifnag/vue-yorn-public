@@ -14,16 +14,17 @@
 					</div>
 					<div class="user-title">
 						<p class="user-title-welcome">{{time}}好、<b>{{userInfo.name}}</b></p>
-						<p class="user-title-word">勇敢坚毅真正之才智乃刚毅之志向{{'18640579572' | hide}}</p>
+						<p class="user-title-word">勇敢坚毅真正之才智乃刚毅之志向</p>
 					</div>
 					
 				</div>
 				<div class="user-right-box">
-						
+					
 				</div>
 			</div>
 			
 		</el-card>
+		<i-box>	123123</i-box>
 	</i-container>
 </template>
 <script>

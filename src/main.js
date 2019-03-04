@@ -36,8 +36,9 @@ import './assets/css/index.css'
 import isys from '@/plugins'
 
 import '@/mock'
-
+// yorn插件 npm包形式发布
 import yornPlugins from '@/plugins/yorn-plugins/index'
+import yornEx from '@/plugins/yorn-plugins-ex/index'
 
 
 library.add(faUser, faUnlockAlt, faPowerOff, faChartPie)
@@ -52,12 +53,17 @@ Vue.use(VCharts)
 Vue.use(contentmenu)
 Vue.use(yornPlugins)
 
+Vue.use(yornEx, {
+	ie: true
+})
+
 Vue.config.productionTip = false
 Vue.prototype.$axios = api
 Vue.prototype.$store = store
 Vue.prototype.$qs = qs
 Vue.prototype.$utils = iutils
 Vue.prototype.$vT = vT
+
 
 new Vue({
 	el: '#app',
@@ -67,6 +73,10 @@ new Vue({
 	template: '<App/>',
 	mounted () {
 		this.$store.dispatch('yorn/account/load')
+		// this.$store.dispatch('yorn/options/loadUserAgent')
+		// if((!!window.ActiveXObject || "ActiveXObject" in window){
+		//     document.body
+		// }
 	}
 
 })

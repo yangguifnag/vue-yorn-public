@@ -40,6 +40,7 @@ export default {
 				await dispatch('yorn/theme/load', null, {root: true})
 				await dispatch('yorn/user/loadUserInfo', null, {root: true})
 				await dispatch('yorn/menu/load', null, {root: true})
+				await dispatch('yorn/options/loadUserAgent', null, {root: true})
 				resolve()
 			})
 		}

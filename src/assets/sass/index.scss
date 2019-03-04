@@ -13,6 +13,10 @@ $baseGreen : #67C23A;
 $baseRed : #F56C6C;
 $baseGrey : #909399;
 
+
+html{
+	
+}
 .pull-right{
 	float: right;
 	&:after{
@@ -675,6 +679,32 @@ a{
 	}
 }
 
+.ie-hack{
+	.yorn-el-container,.yorn-main-container{
+		height: 100%;
+		position: relative;
+	}
+	.yorn-main-container{
+		padding-top: 50px;
+	}
+	.yorn-header{
+		width: 100%;
+		position: absolute;
+		top: 0;
+		left: 0;
+	}
+	.yorn-aside{
+		float: left;
+		height: 100%;
+	}
+	.yorn-main{
+		height: 100%;
+	}
+	.el-submenu__title:active,.el-submenu__title:focus{
+		background-color: inherit;
+	}
+}
+
 .yorn{
 	.yorn-container{
 		box-sizing: border-box;
@@ -690,7 +720,7 @@ a{
 	.dashboard{
 		.user-info-card{
 			display: flex;
-			 justify-content :space-between;
+			justify-content :space-between;
 		}
 		.user-info-panel{
 			display: flex;
