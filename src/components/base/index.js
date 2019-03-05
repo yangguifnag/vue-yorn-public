@@ -13,6 +13,7 @@ import panel from '@/components/layout/panel.vue'
 import formItem from '@/components/layout/index.vue'
 import Icontainer from '@/components/layout/container.vue'
 
+
 Vue.component('i-icon', Iicon)
 Vue.component('i-text', Itext)
 Vue.component('i-col', Icol)
@@ -31,5 +32,7 @@ Vue.component('i-panel', panel)
 Vue.component('i-container', Icontainer)
 Vue.component('i-logo', () => import('@/components/base/i-logo'))
 Vue.component('i-menu', () => import('@/components/base/i-menu'))
+Vue.component('i-box', () => import('@/components/base/i-box'))
+
 
 Vue.component('y-item', formItem)

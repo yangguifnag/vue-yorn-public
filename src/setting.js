@@ -40,7 +40,13 @@ const setting = {
 
 	},
 	page: {
-		opened: []
+		opened: [{
+			name: 'index',
+			fullPath: '/index',
+			meta: {
+				title: '仪表盘'
+			}
+		}]
 	}
 
 }

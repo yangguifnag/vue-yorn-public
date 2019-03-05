@@ -3,7 +3,6 @@ import moment from 'moment'
 const time = {}
 time.nowSect = (h) => {
 	let hour = moment().hour()
-	console.log(hour)
 	if (hour < 9) {
 		return '早上'
 	} else if (hour < 11) {

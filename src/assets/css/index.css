@@ -828,6 +828,24 @@ a {
     font-size: 13px;
     color: #08c; }
 
+.ie-hack .yorn-el-container, .ie-hack .yorn-main-container {
+  height: 100%;
+  position: relative; }
+.ie-hack .yorn-main-container {
+  padding-top: 50px; }
+.ie-hack .yorn-header {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0; }
+.ie-hack .yorn-aside {
+  float: left;
+  height: 100%; }
+.ie-hack .yorn-main {
+  height: 100%; }
+.ie-hack .el-submenu__title:active, .ie-hack .el-submenu__title:focus {
+  background-color: inherit; }
+
 .yorn .yorn-container {
   box-sizing: border-box; }
 .yorn .yorn-container {

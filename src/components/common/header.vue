@@ -25,7 +25,7 @@
 					<el-tooltip content="消息" placement="top">
 						<span >
 							<el-badge :hidden="hasMassage" :value="MassageValue" :max="99">
-								<f-icon class="fsicon" icon="envelope"/>
+								<i-icon class="fsicon" name="envelope"/>
 							</el-badge>
 						</span> 
 					</el-tooltip>
@@ -34,7 +34,7 @@
 				<div class="item" @click="themeDialogVisible=!themeDialogVisible">
 					<el-tooltip content="主题" placement="top">
 						<span >
-							<f-icon class="fsicon" icon="theater-masks" />
+							<i-icon class="fsicon" name="theater-masks" />
 						</span> 
 					</el-tooltip>
 				</div>
@@ -42,13 +42,13 @@
 				<div class="item" @click="changeFullScreen">
 					<el-tooltip content="全屏" placement="top" v-show="!isFullScreen" >
 						<span >
-							<f-icon class="fsicon" icon="expand" />
+							<i-icon class="fsicon" name="expand" />
 						</span> 
 					</el-tooltip>
 
 					<el-tooltip content="退出全屏" placement="top" v-show="isFullScreen" >
 						<span v-show="isFullScreen">
-							<f-icon class="fsicon" icon="compress" />
+							<i-icon class="fsicon" name="compress" />
 						</span> 
 					</el-tooltip>
 
@@ -69,7 +69,7 @@
 						<el-dropdown-item>修改密码</el-dropdown-item>
 
 						<el-dropdown-item divided command="logOut">
-							<f-icon class="f-bs-blue" icon="power-off" />
+							<i-icon class="f-bs-blue" name="power-off" />
 							&nbsp;退出
 						</el-dropdown-item>
 					</el-dropdown-menu>
