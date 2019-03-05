@@ -8,6 +8,9 @@ export default {
 	install (Vue, options) {
 		options = Object.assign(_options, options)
 
-		options.ie && (ieex.ex_classList())
+		options.ie && (() => {
+			ieex.ex_classList()
+			ieex.ex_meta()
+		})()
 	}
 }

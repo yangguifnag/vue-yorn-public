@@ -13,8 +13,7 @@ const filters = {
 	hide (val, begin = 3, long = 4) {
 		let len = val.length
 		return val.split('').map((i, _) => (_ >= begin && _ < (begin + long)) ? '*' : i).join('')
-	},
-	
+	}
 
 
 }

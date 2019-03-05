@@ -5,7 +5,7 @@ import Vue from 'vue'
 import App from './App'
 
 import router from '@/router/index'
-// import store from './vuex/store'
+
 import store from '@/vuex/index'
 
 import api from '@/axios/api'
@@ -19,12 +19,7 @@ import contentmenu from 'v-contextmenu'
 import 'v-contextmenu/dist/index.css'
 // [ 可选插件组件 ] 图表
 import VCharts from 'v-charts'
-// [ font-awesome ] 字体文件import 使用方法
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { faUser, faUnlockAlt, faPowerOff, faChartPie} from '@fortawesome/free-solid-svg-icons'
-import { faExpandArrowsAlt, faExpand, faCompress, faTheaterMasks, faCheck, faBullseye, faEnvelope, faCheckCircle, faTimesCircle, faHourglassHalf} from '@fortawesome/free-solid-svg-icons'
-import { faWindows } from '@fortawesome/free-brands-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+
 // [ele-ui] eleUi
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
@@ -32,7 +27,7 @@ import 'element-ui/lib/theme-chalk/display.css'
 import CollapseTransition from 'element-ui/lib/transitions/collapse-transition'
 // [自定义css]
 import './assets/css/index.css'
-
+// 引入全部自定义封装组件
 import isys from '@/plugins'
 
 import '@/mock'
@@ -40,19 +35,13 @@ import '@/mock'
 import yornPlugins from '@/plugins/yorn-plugins/index'
 import yornEx from '@/plugins/yorn-plugins-ex/index'
 
-
-library.add(faUser, faUnlockAlt, faPowerOff, faChartPie)
-library.add(faExpandArrowsAlt, faExpand, faCompress, faWindows, faTheaterMasks, faCheck, faBullseye, faEnvelope, faCheckCircle, faTimesCircle, faHourglassHalf)
-Vue.component('f-icon', FontAwesomeIcon)
 Vue.component(CollapseTransition.name, CollapseTransition)
 
 Vue.use(isys)
 Vue.use(ElementUI)
 Vue.use(VCharts)
-// Vue.use(Vuex)
 Vue.use(contentmenu)
 Vue.use(yornPlugins)
-
 Vue.use(yornEx, {
 	ie: true
 })
@@ -73,10 +62,6 @@ new Vue({
 	template: '<App/>',
 	mounted () {
 		this.$store.dispatch('yorn/account/load')
-		// this.$store.dispatch('yorn/options/loadUserAgent')
-		// if((!!window.ActiveXObject || "ActiveXObject" in window){
-		//     document.body
-		// }
 	}
 
 })

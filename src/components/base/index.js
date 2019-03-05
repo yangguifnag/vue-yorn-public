@@ -34,4 +34,5 @@ Vue.component('i-logo', () => import('@/components/base/i-logo'))
 Vue.component('i-menu', () => import('@/components/base/i-menu'))
 Vue.component('i-box', () => import('@/components/base/i-box'))
 
+
 Vue.component('y-item', formItem)

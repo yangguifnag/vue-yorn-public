@@ -2,7 +2,6 @@
 const ex = {}
 
 ex.ex_classList = () => {
-
 	if (!('classList' in document.documentElement)) {
 		Object.defineProperty(HTMLElement.prototype, 'classList', {
 			get: function () {
@@ -10,7 +9,7 @@ ex.ex_classList = () => {
 				function update (fn) {
 					return function (value) {
 						var classes = self.className.split(/\s+/g),
-							index = classes.indexOf(value);
+							index = classes.indexOf(value)
 						fn(classes, index, value)
 						self.className = classes.join(' ')
 					}
@@ -40,6 +39,29 @@ ex.ex_classList = () => {
 			}
 		})
 	}
+}
+
+ex.ex_meta = () => {
+	const metaList = [
+		{
+			'http-equiv': 'X-UA-Compatible',
+			'content': 'IE=edge,chrome=1'
+		}, {
+			'name': 'renderer',
+			'content': 'webkit'
+		}, {
+			'name': 'force-rendering',
+			'content': 'webkit'
+		}
+	]
+	const head = document.getElementsByTagName('head')[0]
+	metaList.map(i => {
+		const meta = document.createElement('meta')
+		Object.keys(i).map(k => {
+			meta.setAttribute(k, i[k])
+		})
+		head.appendChild(meta)
+	})
 }
 
 export default ex

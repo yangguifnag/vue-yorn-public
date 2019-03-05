@@ -3,6 +3,8 @@ import {
 	get
 } from 'lodash'
 
+import router from '@/router'
+
 import setting from '@/setting.js'
 
 const isKeepAlive = data => get(data, 'meta.cache', false)
@@ -49,6 +51,104 @@ export default {
 					return Object.assign({}, opened, find)
 				}).filter((opened, index) => valid[index] === 1)
 			})
+		},
+		openedSave ({state, commit, dispatch}) {
+			return new Promise(async resolve => {
+				await dispatch('yorn/db/set', {
+					dbName: 'sys',
+					path: 'page.opened',
+					value: state.opened,
+					user: true
+				}, {root: true})
+				resolve()
+			})
+		},
+		openedUpdate ({state, commit, dispatch}, {index, params, query, fullPath}) {
+			return new Promise(async resolve => {
+				let page = state.opened[index]
+				page.params = params || page.params
+				page.query = query || page.query
+				page.fullPath = fullPath || page.fullPath
+				state.opened.splice(index, 1, page)
+				await dispatch('openedSave')
+				resolve()
+			})
+		},
+		add ({state, commit, dispatch}, {tag, params, query, fullPath}) {
+			return new Promise(async resolve => {
+				let newTag = tag
+				newTag.params = params || newTag.params
+				newTag.query = query || newTag.query
+				newTag.fullPath = fullPath || newTag.fullPath
+				state.opened.push(newTag)
+				await dispatch('openedSave')
+				resolve()
+			})
+		},
+		open ({state, commit, dispatch}, {name, params, query, fullPath}) {
+			return new Promise(async resolve => {
+				let opened = state.opened,
+					pageIndex = 0
+				const pageOpen = opened.find((i, _) => {
+					const same = i.fullPath === fullPath
+					pageIndex = same ? _ : pageIndex
+					return same
+				})
+				if (pageOpen) {
+					await dispatch('openedUpdate', {
+						index: pageIndex,
+						params,
+						query,
+						fullPath
+
+					})
+				} else {
+					let page = state.pool.find(t => t.name === name)
+					await dispatch('add', {
+						tag: Object.assign({}, page),
+						params,
+              			query,
+              			fullPath
+					})
+				}
+				commit('currentSet', fullPath)
+				resolve()
+			})
+		},
+		close ({state, commit, dispatch}, {tagName}) {
+			return new Promise(async resolve => {
+				let newPage = state.opened[0]
+				let	len = state.opened.length
+				const isCurrent = state.current === tagName
+				if (isCurrent) {
+					state.opened.forEach((i, _) => {
+						i.fullPath === tagName && (_ < len - 1
+							? newPage = state.opened[_ + 1]
+							: newPage = state.opened[_ - 1])
+					})
+				}
+
+				const index = state.opened.findIndex(page => page.fullPath === tagName)
+				if (index >= 0) {
+					commit('keepAliveRemove', state.opened[index].name)
+					state.opened.slice(index, 1)
+				}
+				await dispatch('openedSave')
+				if (isCurrent) {
+					const {
+						name = '',
+						params = {},
+						query = {}
+					} = newPage
+					let routerObj = {
+						name,
+						params,
+						query
+					}
+					router.push(routerObj)
+				}
+				resolve()
+			})
 		}
 	},
 	mutations: {
@@ -67,6 +167,9 @@ export default {
 		},
 		keepAliveRefresh (state) {
 			state.keepAlive = state.opened.filter(item => isKeepAlive(item)).map(e => e.name)
+		},
+		currentSet (state, val) {
+			state.current = val
 		}
 	}
 

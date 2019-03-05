@@ -4,24 +4,20 @@
 		<div class="frame-panel">
 			<div class="logo">
 				<img src="../assets/img/logo-yorn-s.png" height="50px">
-		<!-- 		<span>
-					YORN
-				</span> -->
 			</div>
 			<div class="loginFormapanel">
-	<!-- 			<h3 class="t-center m-b-lg">登录</h3> -->
 				<el-form :model="loginform" status-icon :rules="rule" ref="loginform"  class="" size="medium">
 					<el-form-item   prop="userNo">
 						<el-input type="text" v-model="loginform.userNo" auto-complete="off" placeholder="用户名">
 							<template slot="prepend">
-								<f-icon icon="user"></f-icon>
+								<i-icon name="user" />
 							</template>
 						</el-input>
 					</el-form-item>
 					<el-form-item  prop="passWord">
 						<el-input type="password" v-model="loginform.passWord" auto-complete="off" placeholder="密码">
 							<template slot="prepend">
-								<f-icon icon="unlock-alt"></f-icon>
+								<i-icon name="unlock-alt" />
 							</template>
 						</el-input>
 					</el-form-item>

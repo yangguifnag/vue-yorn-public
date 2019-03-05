@@ -9,6 +9,7 @@
 			</el-aside>
 			<el-main class="yorn-main">
 				<!-- <breadcrumb/> -->
+				<yorn-tabs/>
 				<div class="main-container">
 					<keep-alive :include="keepAlivePages">
 						<transition name="yorn-router">
