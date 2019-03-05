@@ -5,6 +5,7 @@ import Vue from 'vue'
 import App from './App'
 
 import router from '@/router/index'
+import {inside} from '@/router/router'
 
 import store from '@/vuex/index'
 
@@ -35,6 +36,8 @@ import '@/mock'
 import yornPlugins from '@/plugins/yorn-plugins/index'
 import yornEx from '@/plugins/yorn-plugins-ex/index'
 
+
+
 Vue.component(CollapseTransition.name, CollapseTransition)
 
 Vue.use(isys)
@@ -60,6 +63,9 @@ new Vue({
 	store,
 	components: { App },
 	template: '<App/>',
+	created (){
+		this.$store.commit('yorn/page/init',inside)
+	},
 	mounted () {
 		this.$store.dispatch('yorn/account/load')
 	}

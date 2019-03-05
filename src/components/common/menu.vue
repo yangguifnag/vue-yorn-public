@@ -3,7 +3,7 @@
  			<el-scrollbar :native="false">
  				 <!-- background-color="#1b2b38" text-color="#869fb1"  -->
 	    		<el-menu class="" @open="handleOpen" @close="handleClose" :router="true"  :collapse="getMenuIsCollapse" :unique-opened="true" :collapse-transition="false"  :default-active="getPath" >
-	    			<el-menu-item index="/dashboard">
+	    			<el-menu-item index="/index">
 						<i-icon class="menu-icon" name="tachometer-alt" />
 						<span slot="title">首页</span>
 					</el-menu-item>
@@ -20,7 +20,7 @@
 							<el-menu-item index="/customerScreen/fromMenu">
 								 
 								<span slot="title">客户筛选</span>
-							</el-menu-item>
+							</el-menu-item> 
 							<el-menu-item index="/customerMerge">
 								 
 								<span slot="title">待并归信息查询</span>

@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import store from './../vuex/store'
 import Router from 'vue-router'
-import index from '@/pages/welcome'
+import layout from '@/pages/layout'
 import login from '@/pages/login'
 import customerMainInfo from '@/components/pages/customerInfo/customerMainInfo'
 import customerDetailInfo from '@/pages/customerInfo/customerDeatilInfo/index.vue'
@@ -13,86 +13,87 @@ import handworkMerge from '@/pages/customerMerge/handworkMerge/index.vue'
 
 import baseTable from '@/pages/baseTable/index.vue'
 
-import dashboard from '@/pages/dashboard'
+import index from '@/pages/dashboard'
 import notFound from '@/components/pages/error/404'
 
 Vue.use(Router)
 
-export default {
-	mode: 'history',
-	routes: [{
-		path: '/',
+const uninside = [
+	{
+		path: '/login',
 		name: 'login',
 		component: login
-	}, {
+	},
+	{
+		path: '*',
+		name: 'errorpage',
+		component: notFound
+	}
+]
+
+export const inside = [{
+	path: '/',
+	redirect: '/index', // 默认跳转主页
+	component: layout,
+	meta: {
+		loginToken: true,
+		title: 'index'
+	},
+	children: [{
 		path: '/index',
 		name: 'index',
-		redirect: '/dashboard', // 默认跳转主页
 		component: index,
 		meta: {
-			loginToken: true,
-			name: 'index'
-		},
-		children: [{
-			path: '/dashboard',
-			name: 'dashboard',
-			component: dashboard,
-			meta: {
-				name: 'Dashboard'
-			}
-		}, {
-			path: '/customerMainInfo',
-			name: 'customerMainInfo',
-			component: customerMainInfo,
-			meta: {
-				name: '主页1'
-			}
-		}, {
-			path: '/customerDetailInfo/:id',
-			name: 'customerDetailInfo',
-			component: customerDetailInfo,
-			meta: {
-				name: '查看页'
-			}
-		}, {
-			path: '/policyDetailInfo/:id',
-			name: 'policyDetailInfo',
-			component: policyDetailInfo,
-			meta: {
-				name: '详情页'
-			}
-		}, {
-			path: '/404',
-			name: 'notFound',
-			component: notFound
-		}, {
-			path: '/customerScreen/:type',
-			name: 'customerScreen',
-			component: customerScreen,
-			meta: {
-				name: '客户筛选'
-			}
-		}, {
-			path: '/customerMerge',
-			name: 'customerMerge',
-			component: customerMerge,
-			meta: {
-				name: '待并归信息查询'
-			}
-		}, {
-			path: '/handworkMerge',
-			name: 'handworkMerge',
-			component: baseTable,
-			meta: {
-				name: '手工并归'
-			}
-		}]
-
+			title: 'Dashboard'
+		}
 	}, {
-		path: '*',
-		redirect: '/404'
-	}],
-	scrollBehavior (to, from, savedPosition) {
-	 	return { x: 0, y: 0 }
-	}
-}
+		path: '/customerMainInfo',
+		name: 'customerMainInfo',
+		component: customerMainInfo,
+		meta: {
+			title: '主页1'
+		}
+	}, {
+		path: '/customerDetailInfo/:id',
+		name: 'customerDetailInfo',
+		component: customerDetailInfo,
+		meta: {
+			title: '查看页'
+		}
+	}, {
+		path: '/policyDetailInfo/:id',
+		name: 'policyDetailInfo',
+		component: policyDetailInfo,
+		meta: {
+			title: '详情页'
+		}
+	}, {
+		path: '/customerScreen/:type',
+		name: 'customerScreen',
+		component: customerScreen,
+		meta: {
+			title: '客户筛选'
+		}
+	}, {
+		path: '/customerMerge',
+		name: 'customerMerge',
+		component: customerMerge,
+		meta: {
+			title: '待并归信息查询'
+		}
+	}, {
+		path: '/handworkMerge',
+		name: 'handworkMerge',
+		component: baseTable,
+		meta: {
+			title: '手工并归'
+		}
+	}]
+
+}]
+
+
+export default [
+	...uninside,
+	...inside
+]

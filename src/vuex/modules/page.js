@@ -22,7 +22,7 @@ export default {
 		keepAlive: []
 	},
 
-	action: {
+	actions: {
 		openedLoad ({
 			state,
 			commit,
@@ -50,6 +50,8 @@ export default {
 
 					return Object.assign({}, opened, find)
 				}).filter((opened, index) => valid[index] === 1)
+				state.current || (commit('currentSet', '/index'))
+				resolve()
 			})
 		},
 		openedSave ({state, commit, dispatch}) {
@@ -115,23 +117,23 @@ export default {
 				resolve()
 			})
 		},
-		close ({state, commit, dispatch}, {tagName}) {
+		close ({state, commit, dispatch}, {targetName}) {
 			return new Promise(async resolve => {
 				let newPage = state.opened[0]
 				let	len = state.opened.length
-				const isCurrent = state.current === tagName
+				const isCurrent = state.current === targetName
 				if (isCurrent) {
 					state.opened.forEach((i, _) => {
-						i.fullPath === tagName && (_ < len - 1
+						i.fullPath === targetName && (_ < len - 1
 							? newPage = state.opened[_ + 1]
 							: newPage = state.opened[_ - 1])
 					})
 				}
 
-				const index = state.opened.findIndex(page => page.fullPath === tagName)
+				const index = state.opened.findIndex(page => page.fullPath === targetName)
 				if (index >= 0) {
 					commit('keepAliveRemove', state.opened[index].name)
-					state.opened.slice(index, 1)
+					state.opened.splice(index, 1)
 				}
 				await dispatch('openedSave')
 				if (isCurrent) {
@@ -170,6 +172,22 @@ export default {
 		},
 		currentSet (state, val) {
 			state.current = val
+		},
+		init (state, val) {
+			const pool = []
+			const recur = (ary) => {
+				ary.forEach(i => {
+					if (i.children) {
+						recur(i.children)
+					} else {
+						const {meta, name, path} = i
+						pool.push({meta, name, path})
+					}
+				})
+			}
+			recur(val)
+			console.log(pool)
+			state.pool = pool
 		}
 	}
 

@@ -23,27 +23,33 @@
 	</div>
 </template>
 <script>
-	import { mapState, mapActions } from 'vuex'
-	export default {
-		data () {
-			return {
+import { mapState, mapActions } from 'vuex'
+export default {
+	data () {
+		return {
 
+		}
+	},
+	computed: {
+		...mapState('yorn/page', ['opened', 'current'])
+	},
+	methods: {
+		...mapActions('yorn/page', ['close']),
+		handleClick (tag) {
+			const page = this.opened.find(i => i.fullPath === tag.name)
+			const { name, params, query } = page
+			if (page) {
+				this.$router.push({name, params, query})
 			}
+			console.log(tag)
 		},
-		computed : {
-			...mapState('yorn/page', ['opened','current'])
-		},
-		methods : {
-			handleClick(tag){
-				const page = this.opened.find(i => i.fullPath === tag.name)
-				const { name, params, query } = page
-				if(page){
-					this.$router.push({name,params,query})
-				}
-				console.log(tag)	
+		handleTabsEdit (targetName, action) {
+			if (action === 'remove') {
+				this.close({targetName})
 			}
 		}
 	}
+}
 </script>
 <style lang='scss'>
 	.yorn-tabs{
@@ -58,7 +64,7 @@
 			&.is-active{
 				background-color: #FFF;
 			}
-			
+
 		}
 		.yorn-tools-btn{
 			position: absolute;

@@ -3,13 +3,17 @@ import store from '@/vuex/index'
 import utils from '@/lib/iutils'
 import VueRouter from 'vue-router'
 import NProgress from 'nprogress'
-import router from './router'
+import routes from './router'
 
 
 Vue.use(VueRouter)
 
 const $router = new VueRouter({
-  	...router
+	mode: 'history',
+  	routes,
+  	scrollBehavior (to, from, savedPosition) {
+	 	return { x: 0, y: 0 }
+	}
 })
 
 $router.beforeEach((to, from, next) => { // 全局路由拦截钩子
@@ -19,7 +23,7 @@ $router.beforeEach((to, from, next) => { // 全局路由拦截钩子
 		if (utils.cookie.get('token')) {
 			next()
 		} else {
-			next({path: '/'})
+			next({path: '/login'})
 		}
 	}
 	NProgress.done()
@@ -27,6 +31,9 @@ $router.beforeEach((to, from, next) => { // 全局路由拦截钩子
 
 $router.afterEach((to, from) => {
 	NProgress.start()
+	if (to.name !== 'errorpage') {
+		store.dispatch('yorn/page/open', to)
+	}
 })
 
 export default $router

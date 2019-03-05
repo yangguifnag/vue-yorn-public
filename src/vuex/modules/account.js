@@ -37,6 +37,7 @@ export default {
 		},
 		load ({state, commit, dispatch}) {
 			return new Promise(async resolve => {
+				await dispatch('yorn/page/openedLoad', null, {root: true})
 				await dispatch('yorn/theme/load', null, {root: true})
 				await dispatch('yorn/user/loadUserInfo', null, {root: true})
 				await dispatch('yorn/menu/load', null, {root: true})
