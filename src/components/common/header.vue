@@ -130,13 +130,20 @@
 				this.changeMenuIsCollapse()
 			},
 			logOut(){
+				const that = this
+				let load
 				this.$confirm('确定退出登录吗?','提示',{
 					confirmButtonText: '确定',
 		          	cancelButtonText: '取消',
 		          	type: 'warning',
+		          	async beforeClose(action, instance, done){
+		          		load = that.$load('logout')
+		          		await that.logout({})
+		          		done()
+		          	}
 				}).then(async ()=>{
-					await this.logout({})
-					this.$router.replace({ path: '/' })
+					load.close()
+					this.$router.push({ name: 'login' })
 				}).catch(()=>{
 					return !1;
 				})

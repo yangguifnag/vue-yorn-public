@@ -2,8 +2,10 @@
 import '@/components/base'
 import '@/components'
 
-export default {
-	install(Vue, options) {
+import L from '@/components/yorn-loading'
 
+export default {
+	install (Vue, options) {
+		Vue.prototype.$load = L
 	}
 }

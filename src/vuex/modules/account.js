@@ -1,5 +1,6 @@
 import api from '@/axios/api'
 import utils from '@/lib/iutils'
+import l from '@/components/yorn-loading'
 export default {
 	namespaced: true,
 	actions: {
@@ -7,14 +8,17 @@ export default {
 			state, commit, dispatch
 		}, data) {
 			return new Promise((resolve, reject) => {
+				const load = l('login')
 				api.doLogin(data).then(async res => {
 					utils.cookie.set('userid', res.data.data.uid)
 					utils.cookie.set('token', res.data.token)
 					await dispatch('yorn/user/setUserInfo', res.data.data, {root: true})
 					await dispatch('load')
 					resolve(res)
+					load.close()
 				}).catch(err => {
 					console.log(err)
+					load.close()
 					reject(err)
 				})
 			})
@@ -28,6 +32,7 @@ export default {
 					await dispatch('yorn/menu/setMenuList', {}, {root: true})
 					utils.cookie.remove('userid')
 					utils.cookie.remove('token')
+
 					resolve(res)
 				}).catch(err => {
 					console.log(err)

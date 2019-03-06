@@ -22,7 +22,12 @@ const menu = [{
 	nodeHref: '/c'
 }]
 
+const logout = {
+	msg: ''
+}
+
 export default {
 	good,
-	menu
+	menu,
+	logout
 }

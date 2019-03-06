@@ -98,9 +98,11 @@ export default{
 					this.login(
 						this.loginform
 					).then((res) => {
+						 
 						this.setToken(res.data.token)
 						// await this.setUserInfo(res.data.data)
 						this.$router.push({path: '/index'})
+						 
 					}).catch((err) => {
 						this.$message({
 					          	message: '对不起登录失败!! 请重试!',
