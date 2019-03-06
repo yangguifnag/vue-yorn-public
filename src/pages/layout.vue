@@ -11,18 +11,19 @@
 				<!-- <breadcrumb/> -->
 				<yorn-tabs/>
 				<div class="main-container">
-					<keep-alive :include="keepAlivePages">
-						<transition name="yorn-router">
+					<transition name="yorn-router">
+						<keep-alive :include="keepAlive">
 							<router-view/>
-						</transition>
-					</keep-alive>
+						</keep-alive>
+					</transition>
 				</div>
 			</el-main>
 		</el-container>
 	</el-container>
 </template>
 <script>
-
+	
+	import {mapActions, mapState ,mapMutations ,mapGetters} from 'vuex'
 	import headers from '@/components/common/header'
 	import menus from '@/components/common/menu'
 	import breadcrumb from '@/components/common/breadcrumb'
@@ -39,9 +40,7 @@
 			}
 		},
 		computed : {
-			keepAlivePages(){
-				return true
-			}
+			...mapState('yorn/page',['keepAlive'])
 		}
 	}
 

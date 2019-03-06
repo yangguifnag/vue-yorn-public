@@ -29,10 +29,15 @@ $router.beforeEach((to, from, next) => { // 全局路由拦截钩子
 	NProgress.done()
 })
 
-$router.afterEach((to, from) => {
+let flag = true
+$router.afterEach(async (to, from) => {
 	NProgress.start()
 	if (to.name !== 'errorpage') {
-		store.dispatch('yorn/page/open', to)
+		if (flag) {
+			await store.dispatch('yorn/page/openedLoad')
+			flag = !flag
+		}
+		await store.dispatch('yorn/page/open', to)
 	}
 })
 

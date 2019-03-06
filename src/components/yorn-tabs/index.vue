@@ -13,7 +13,9 @@
 		<div class="yorn-tools-btn">
 			<el-dropdown>
 				<span class="el-dropdown-link">
-					下拉菜单<i class="el-icon-arrow-down el-icon--right"></i>
+					<div class="yorn-tools-btn-body">
+						<i-icon name="cog"/>
+					</div>
 				</span>
 				<el-dropdown-menu slot="dropdown">
 					<el-dropdown-item>黄金糕</el-dropdown-item>
@@ -41,7 +43,6 @@ export default {
 			if (page) {
 				this.$router.push({name, params, query})
 			}
-			console.log(tag)
 		},
 		handleTabsEdit (targetName, action) {
 			if (action === 'remove') {
@@ -57,19 +58,70 @@ export default {
 		position: relative;
 		box-sizing: border-box;
 		padding: 0 10px;
+		padding-right: 100px;
 		.el-tabs__item{
 			height: 30px;
 			line-height: 30px;
 			font-size: 14px;
+			background-color: #FFF;
+			color:#C0C4CC;
 			&.is-active{
+				
+			}
+		
+		}
+		.el-tabs--card>.el-tabs__header .el-tabs__item.is-active{
+			background-color: #eff0f4;
+			border-bottom-color:  #409EFF;
+			color :#409EFF;
+		}
+
+		.el-tabs__nav-next, .el-tabs__nav-prev{
+			line-height: 33px;
+			text-align: center;
+			width: 30px;
+			border: 1px solid #e4e7ed;
+			//border-top: 1px solid #e4e7ed;
+			height: 30px;
+			&:hover{
 				background-color: #FFF;
+				color:#000;
+			};
+
+		}
+		.el-tabs__item:first-child{
+			&.is-closable:hover{
+				padding:0 20px;
+			}
+			.el-icon-close{
+				display: none;
+				
 			}
 
+		}
+		.el-tabs__header{
+			margin-bottom: 0;
+		}
+		.el-tabs__nav-wrap.is-scrollable{
+			padding: 0 30px;
 		}
 		.yorn-tools-btn{
 			position: absolute;
 			right: 0;
 			top: 0;
+			.yorn-tools-btn-body{
+				height: 30px;
+				width: 50px;
+				background: #FFF;
+				line-height: 30px;
+				text-align: center;
+				border-top-right-radius: 3px;
+				border-top-left-radius: 3px;
+				border: 1px solid #DCDFE6;
+				&:hover{
+					background: #EBEEF5;
+				}
+			}
 		}
 	}
 </style>

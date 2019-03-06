@@ -1,6 +1,7 @@
 import axios from 'axios'
 import router from '@/router'
-import store from '@/vuex/store'
+import store from '@/vuex'
+import utils from '@/lib/iutils'
 
 axios.defaults.baseURL = 'http://localhost:8081'
 axios.defaults.headers['Content-Type'] = 'application/x-www-form-urlencoded'
@@ -8,9 +9,9 @@ axios.defaults.timeout = 100000
 
 axios.interceptors.request.use(
 	config => { // 全局请求拦截
-		if (store.state.token == null || store.state.token === '') {
+		if (utils.cookie.get('token') == null || utils.cookie.get('token') === '') {
 
-			// router.replace({ path: '/' })
+			//router.replace({ path: '/' })
 		}
 
 		return config

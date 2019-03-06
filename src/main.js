@@ -37,7 +37,6 @@ import yornPlugins from '@/plugins/yorn-plugins/index'
 import yornEx from '@/plugins/yorn-plugins-ex/index'
 
 
-
 Vue.component(CollapseTransition.name, CollapseTransition)
 
 Vue.use(isys)
@@ -58,16 +57,13 @@ Vue.prototype.$vT = vT
 
 
 new Vue({
-	el: '#app',
 	router,
 	store,
-	components: { App },
-	template: '<App/>',
-	created (){
-		this.$store.commit('yorn/page/init',inside)
+	render: h => h(App),
+	created () {
+		this.$store.commit('yorn/page/init', inside)
 	},
 	mounted () {
 		this.$store.dispatch('yorn/account/load')
 	}
-
-})
+}).$mount('#app')

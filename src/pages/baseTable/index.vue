@@ -19,6 +19,7 @@
 </template>
 <script>
 export default{
+
 	data () {
 		return {
 			source: 'aa.searchInfo',

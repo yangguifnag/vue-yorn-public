@@ -19,7 +19,7 @@ export default {
 
 		current: '',
 
-		keepAlive: []
+		keepAlive: ['index', 'baseTable']
 	},
 
 	actions: {
@@ -29,6 +29,7 @@ export default {
 			dispatch
 		}) {
 			return new Promise(async resolve => {
+				console.log('load')
 				const value = await dispatch('yorn/db/get', {
 					dbName: 'sys',
 					path: 'page.opened',
@@ -37,7 +38,6 @@ export default {
 				}, {
 					root: true
 				})
-
 				const valid = []
 				state.opened = value.map(opened => {
 					if (opened.name === 'index') {
@@ -89,6 +89,7 @@ export default {
 		},
 		open ({state, commit, dispatch}, {name, params, query, fullPath}) {
 			return new Promise(async resolve => {
+				// await dispatch('openedLoad')
 				let opened = state.opened,
 					pageIndex = 0
 				const pageOpen = opened.find((i, _) => {
@@ -102,16 +103,17 @@ export default {
 						params,
 						query,
 						fullPath
-
 					})
 				} else {
 					let page = state.pool.find(t => t.name === name)
-					await dispatch('add', {
-						tag: Object.assign({}, page),
-						params,
-              			query,
-              			fullPath
-					})
+					if (page) {
+						await dispatch('add', {
+							tag: Object.assign({}, page),
+							params,
+	              			query,
+	              			fullPath
+						})
+					}
 				}
 				commit('currentSet', fullPath)
 				resolve()
@@ -186,7 +188,6 @@ export default {
 				})
 			}
 			recur(val)
-			console.log(pool)
 			state.pool = pool
 		}
 	}

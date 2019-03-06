@@ -44,7 +44,7 @@ const setting = {
 			name: 'index',
 			fullPath: '/index',
 			meta: {
-				title: '仪表盘'
+				title: 'Dashboard'
 			}
 		}]
 	}

@@ -11,23 +11,19 @@
 					<el-submenu index="/part1">
 						<template slot="title">
 							<i class="el-icon-location"></i>
-							<span class="title_menu">客户信息查询</span>
+							<span class="title_menu">测试菜单</span>
 						</template>
 							<el-menu-item index="/customerMainInfo">
-								 
-								<span slot="title">360视图</span>
+								<span slot="title">废弃页1</span>
 							</el-menu-item>
 							<el-menu-item index="/customerScreen/fromMenu">
-								 
-								<span slot="title">客户筛选</span>
+								<span slot="title">废弃页2</span>
 							</el-menu-item> 
 							<el-menu-item index="/customerMerge">
-								 
-								<span slot="title">待并归信息查询</span>
+								<span slot="title">废弃页3</span>
 							</el-menu-item>
 							<el-menu-item index="/handworkMerge">
-								 
-								<span slot="title">手工归并</span>
+								<span slot="title">基础表格</span>
 							</el-menu-item>
 					</el-submenu>
 
@@ -62,22 +58,17 @@
 			return {
 				meunid : 0,
 				activeName : '1',
-				//isCollapse: true,
 				menulist : [],
 			}
 		},
 		computed : {
 			...mapGetters('yorn/menu',['getMenuIsCollapse','getMenu']),
-			// isCollapse(){
-			// 	return this.$store.state.menuIsCollapse
-			// },
 			getPath(){
 				return this.$route.path
 			}
 		},
 		created(){
 			var data = this.$qs.stringify({
-				token : this.$store.state.token,
 				employeeNumber : 'Iadmin'
 			})
 			this.$axios.menu(data) // 获取菜单数据

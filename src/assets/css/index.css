@@ -543,7 +543,6 @@ a {
   position: relative;
   overflow: hidden; }
 #app .main-container {
-  margin-top: 34px;
   overflow: hidden;
   height: calc(100% - 35px); }
   #app .main-container > .el-scrollbar {
