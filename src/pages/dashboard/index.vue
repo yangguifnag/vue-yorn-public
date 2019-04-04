@@ -16,42 +16,40 @@
 						<p class="user-title-welcome">{{time}}好、<b>{{userInfo.name}}</b></p>
 						<p class="user-title-word">勇敢坚毅真正之才智乃刚毅之志向</p>
 					</div>
-					
+
 				</div>
 				<div class="user-right-box">
-					
+
 				</div>
 			</div>
-			
+
 		</el-card>
 		<i-box>	123123</i-box>
 	</i-container>
 </template>
 <script>
-	
-	import {mapActions, mapState ,mapMutations ,mapGetters} from 'vuex'
+import { mapActions, mapState, mapMutations, mapGetters } from 'vuex'
 
-	export default {
-		data() {
-			return {
-				menuShow : false,
-				menuX : 0,
-				menuY : 0,
-				time : this.$utils.time.nowSect()
-			}
-		},
-		methods : {
-			handleContextmenu(event){
-				event.preventDefault()
-        		event.stopPropagation()
-        		this.menuX = event.clientX
-        		this.menuY = event.clientY
-        		this.menuShow = true
-			}
-		},
-		computed : {
-			...mapState('yorn/user',['userInfo'])
+export default {
+	data () {
+		return {
+			menuShow: false,
+			menuX: 0,
+			menuY: 0,
+			time: this.$utils.time.nowSect()
 		}
-
+	},
+	methods: {
+		handleContextmenu (event) {
+			event.preventDefault()
+			event.stopPropagation()
+			this.menuX = event.clientX
+			this.menuY = event.clientY
+			this.menuShow = true
+		}
+	},
+	computed: {
+		...mapState('yorn/user', ['userInfo'])
 	}
+}
 </script>

@@ -1,11 +1,11 @@
 <template>
 	<el-container class="index yorn-el-container">
 		<el-header class="shodow theme-header yorn-header" height="auto">
-			<headers /> 
+			<headers />
 		</el-header>
 		<el-container class="yorn-main-container">
 			<el-aside width="auto" class="theme-aside yorn-aside ">
-				<menus /> 
+				<menus />
 			</el-aside>
 			<el-main class="yorn-main">
 				<!-- <breadcrumb/> -->
@@ -22,34 +22,34 @@
 	</el-container>
 </template>
 <script>
-	
-	import {mapActions, mapState ,mapMutations ,mapGetters} from 'vuex'
-	import headers from '@/components/common/header'
-	import menus from '@/components/common/menu'
-	import breadcrumb from '@/components/common/breadcrumb'
 
-	export default {
-		components : {
-			headers,
-			menus,
-			breadcrumb
-		},
-		data(){
-			return{
-				show : true
-			}
-		},
-		computed : {
-			...mapState('yorn/page',['keepAlive'])
+import {mapActions, mapState, mapMutations, mapGetters} from 'vuex'
+import headers from '@/components/common/header'
+import menus from '@/components/common/menu'
+import breadcrumb from '@/components/common/breadcrumb'
+
+export default {
+	components: {
+		headers,
+		menus,
+		breadcrumb
+	},
+	data () {
+		return {
+			show: true
 		}
+	},
+	computed: {
+		...mapState('yorn/page', ['keepAlive'])
 	}
+}
 
 </script>
 
 
 <style scoped>
 .el-header,.el-aside{
- 
+
 	overflow: hidden;
 }
 .el-menu{

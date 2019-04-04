@@ -1,5 +1,4 @@
 <template>
-	<keep-alive>
 	<div class="yorn-datatable" v-loading="loading">
 		<div class="data-table-header">
 			<div class="pull-left">
@@ -32,7 +31,7 @@
 		 		:show-overflow-tooltip="true">
 		 		<template slot-scope="scope">
 		 			<template v-if="item.render">
-		 				<render-dom 
+		 				<render-dom
 		 					:item = "item"
 							:row = "scope.row"
 							:value ="scope.row[item.key+'']"
@@ -46,7 +45,7 @@
 			 			</template>
 			 			<template  v-else>{{!!(scope.row[item.key+'']+'') ? scope.row[item.key+''] : '-'}}</template>
 		 			</template>
-		 			
+
 		 		</template>
 		 	</el-table-column>
 		 	<el-table-column v-if="operation" align="center" label="操作"  min-width="150" :fixed="operation.fixed">
@@ -62,7 +61,6 @@
 		<el-pagination class="m-t-md" @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="pages.currentPage" :page-sizes="pages.pageSizes" :page-size="pages.pageSize" layout="total, sizes, prev, pager, next, jumper" :total="pages.total" :background="true">
 	    </el-pagination>
     </div>
-	</keep-alive>
 </template>
 <script>
 export default {
@@ -95,24 +93,24 @@ export default {
 		operation: [Object, Boolean],
 		source: String,
 		responseHandle: {
-			type : Function,
+			type: Function,
 			default: (res) => res
 		},
-		immediate : {
-			type : [Boolean],
+		immediate: {
+			type: [Boolean],
 			default: false
 		},
-		vague : {
-			type : Boolean,
-			default : true
+		vague: {
+			type: Boolean,
+			default: true
 		}
 	},
 	watch: {
 		pageType: {
-			handler(val){
+			handler (val) {
 				this.paging = val === 'client'
 			},
-			immediate : true
+			immediate: true
 		},
 		formData: {
 			handler (val) {
@@ -134,11 +132,11 @@ export default {
 	},
 	data () {
 		return {
-			searchField : [],
-			searchInput : '',
-			paging : true,
+			searchField: [],
+			searchInput: '',
+			paging: true,
 			responseData: {},
-			_allTableData : [],
+			_allTableData: [],
 			allTableData: [],
 			showTableData: [],
 			loading: false,
@@ -151,56 +149,54 @@ export default {
 		}
 	},
 	created () {
-		if(this.immediate){
+		if (this.immediate) {
 			this.getTableData()
 		}
 		this.searchField = this.columns.map(i => i.key)
-		 
 	},
-	components : {
-		renderDom : {
-			functional : true,
-			props:{
-				row : Object,
-				item : Object,
-				index : [Number,String],
-				render : Function,
-				value : [Object,String,Array,Number,Boolean]
+	components: {
+		renderDom: {
+			functional: true,
+			props: {
+				row: Object,
+				item: Object,
+				index: [Number, String],
+				render: Function,
+				value: [Object, String, Array, Number, Boolean]
 			},
-			render : (h,ctx) => {
+			render: (h, ctx) => {
 				let params = {
-					row : ctx.props.row,
-					value : ctx.props.value,
-					index : ctx.props.index,
-					item : ctx.props.item
+					row: ctx.props.row,
+					value: ctx.props.value,
+					index: ctx.props.index,
+					item: ctx.props.item
 				}
-				return ctx.props.render(h,params)
+				return ctx.props.render(h, params)
 			}
 		}
 	},
-	computed : {
+	computed: {
 		// showTableData(){
 		// 	return
 		// }
 	},
 	methods: {
-		searchFunc(){
+		searchFunc () {
 			let _dataList = this._allTableData.filter(i => {
 				let flag = this.searchField.filter(n => {
-					return i[n] !== undefined ? this.vague ?
-						(i[n]+'').toLowerCase().includes(this.searchInput.toLowerCase()) :
-						(i[n]+'').toLowerCase() === this.searchInput.toLowerCase() :
-						false
+					return i[n] !== undefined ? this.vague
+						? (i[n] + '').toLowerCase().includes(this.searchInput.toLowerCase())
+						: (i[n] + '').toLowerCase() === this.searchInput.toLowerCase()
+						: false
 				})
 				return !this.searchInput || flag.length
-
 			})
 			this.allTableData = _dataList
-			this.render ()
+			this.render()
 		},
-		getServer(str){
+		getServer (str) {
 			let _chain = str ? (str.split('.').length ? str.split('.') : [str]) : []
-			return _chain.reduce((_,item) => _[item], this.$axios)
+			return _chain.reduce((_, item) => _[item], this.$axios)
 		},
 		initTable () {
 			this.responseData = {}
@@ -218,16 +214,16 @@ export default {
 			this.pages.currentPage = val
 			this.handlerChange()
 		},
-		handlerChange(){
-			if(this.pageType.toLowerCase() === 'client'){
+		handlerChange () {
+			if (this.pageType.toLowerCase() === 'client') {
 				this.render()
-			}else{
+			} else {
 				this.getTableData()
 			}
 		},
 		getTableData (option = {noErrorUpdata: '', msg: ''}) {
 			this.loading = true
-			var data =  {
+			var data = {
 				limit: this.pages.pageSize,
 				offset: (this.pages.currentPage - 1) * this.pages.pageSize,
 				...this.formData
@@ -235,7 +231,7 @@ export default {
 			this.getServer(this.source)(data).then(res => {
 				this.responseData = this.formatResponseData(this.responseHandle(res.data))
 				this.allTableData = this.formatTableData(this.responseData.rows)
-				this._allTableData = Object.assign([],this.allTableData)
+				this._allTableData = Object.assign([], this.allTableData)
 				this.render()
 				this.loading = false
 				if (option.msg) {
@@ -274,12 +270,12 @@ export default {
 			let _start = (this.pages.currentPage - 1) * this.pages.pageSize,
 				_end = _start + this.pages.pageSize
 			this.showTableData = data.slice(_start, _end)
-			if(this.pages.currentPage !== 1 && this.showTableData.length == 0){
-				this.pages.currentPage -- ;
-				this.renderClient (data)
+			if (this.pages.currentPage !== 1 && this.showTableData.length == 0) {
+				this.pages.currentPage--
+				this.renderClient(data)
 			}
 		},
-		renderServer(data){
+		renderServer (data) {
 			this.showTableData = data
 		},
 		getOption () {
@@ -301,45 +297,45 @@ export default {
 		},
 		formatTableData (data) {
 			return data.map((item, i) => {
-				if(typeof item.__index__ == 'undefined'){
+				if (typeof item.__index__ === 'undefined') {
 					item = {
 						...item,
 						__index__: i
 					}
-				}else{
+				} else {
 					item.__index__ = i
 				}
 				return item
 			})
 		},
-		refresh (){
-			if(this.pageType.toLowerCase() === 'client'){
+		refresh () {
+			if (this.pageType.toLowerCase() === 'client') {
 				this.formatTableData(this.allTableData)
 				this.handlerChange()
-			}else{
+			} else {
 				this.getTableData()
 			}
 		},
-		deleteItem (index){
-			if(this.paging){
-				this.allTableData.splice(index, 1);
+		deleteItem (index) {
+			if (this.paging) {
+				this.allTableData.splice(index, 1)
 				this.formatTableData(this.allTableData)
 				this.handlerChange()
-			}else {
+			} else {
 				this.getTableData()
 			}
 		},
-		updataItem (row,data){
-			if(this.paging){
-				this.$vT.setData(row,data)
+		updataItem (row, data) {
+			if (this.paging) {
+				this.$vT.setData(row, data)
 				this.formatTableData(this.allTableData)
 				this.handlerChange()
-			}else {
+			} else {
 				this.getTableData()
 			}
 		},
-		addItem(data){
-			this.allTableData.unshift(data);
+		addItem (data) {
+			this.allTableData.unshift(data)
 		},
 		emitAllData () {
 			this.$emit('allData', this.allTableData)

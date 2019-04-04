@@ -17,7 +17,7 @@
 							<el-badge is-dot :hidden="hasLog" :value="LogValue" :max="99">
 								<i-icon class="fsicon" name="bullseye"/>
 							</el-badge>
-						</span> 
+						</span>
 					</el-tooltip>
 				</div>
 
@@ -27,7 +27,7 @@
 							<el-badge :hidden="hasMassage" :value="MassageValue" :max="99">
 								<i-icon class="fsicon" name="envelope"/>
 							</el-badge>
-						</span> 
+						</span>
 					</el-tooltip>
 				</div>
 
@@ -35,7 +35,7 @@
 					<el-tooltip content="主题" placement="top">
 						<span >
 							<i-icon class="fsicon" name="theater-masks" />
-						</span> 
+						</span>
 					</el-tooltip>
 				</div>
 
@@ -43,17 +43,17 @@
 					<el-tooltip content="全屏" placement="top" v-show="!isFullScreen" >
 						<span >
 							<i-icon class="fsicon" name="expand" />
-						</span> 
+						</span>
 					</el-tooltip>
 
 					<el-tooltip content="退出全屏" placement="top" v-show="isFullScreen" >
 						<span v-show="isFullScreen">
 							<i-icon class="fsicon" name="compress" />
-						</span> 
+						</span>
 					</el-tooltip>
 
 				</div>
-				
+
 				<el-dropdown class="yorn-header-item item" :show-timeout="100" @command="handleCommand">
 					<span class="el-dropdown-link">
 						<!-- <f-icon class="fsicon" :icon="['fab', 'windows']" /> -->
@@ -98,72 +98,76 @@
 			  	 		<i-icon name="check" />
 			  	 	</span>
 			  	 </div>
-			 
+
 			</el-dialog>
 
 			<el-dialog title="信息" :visible.sync="massageDialogVisible" :fullscreen="true" :append-to-body="true" >
 
-			  
-			 
+
 			</el-dialog>
 		</div>
 	</div>
 </template>
 <script>
-	import {mapActions, mapState ,mapMutations ,mapGetters} from 'vuex'
-	export default{
-		data () {
-			return {
-				themeDialogVisible : false,
-				hasMassage : false,
-				MassageValue : 0,
-				massageDialogVisible : false,
-				hasLog : false,
-				LogValue : 0
-			}
+import {mapActions, mapState, mapMutations, mapGetters} from 'vuex'
+export default{
+	data () {
+		return {
+			themeDialogVisible: false,
+			hasMassage: false,
+			MassageValue: 0,
+			massageDialogVisible: false,
+			hasLog: false,
+			LogValue: 0
+		}
+	},
+	methods: {
+		handleCommand (command) {
+			this[command]()
 		},
-		methods : {
-			handleCommand(command){
-				this[command]()
-			},
-			changeMenu(){
-				this.changeMenuIsCollapse()
-			},
-			logOut(){
-				const that = this
-				let load
-				this.$confirm('确定退出登录吗?','提示',{
-					confirmButtonText: '确定',
+		changeMenu () {
+			this.changeMenuIsCollapse()
+		},
+		logOut () {
+			const that = this
+			let load
+			this.$confirm('确定退出登录吗?', '提示', {
+				confirmButtonText: '确定',
 		          	cancelButtonText: '取消',
 		          	type: 'warning',
-		          	async beforeClose(action, instance, done){
-		          		load = that.$load('logout')
-		          		await that.logout({})
-		          		done()
+		          	async beforeClose (action, instance, done) {
+					if (action === 'confirm') {
+						load = that.$load('logout')
+						await that.logout({})
+						done()
+					} else {
+						done()
+					}
 		          	}
-				}).then(async ()=>{
-					load.close()
-					this.$router.push({ name: 'login' })
-				}).catch(()=>{
-					return !1;
-				})
-			},
-			async changetheme(name){
-				await this.set(name)
-			},
-			...mapActions('yorn/theme',['set']),
-			...mapActions('yorn/menu',['changeMenuIsCollapse']),
-			...mapActions('yorn/options',['changeFullScreen']),
-			...mapActions('yorn/account',['logout'])
-
-
+			}).then(async () => {
+				load && load.close()
+				this.$router.push({ name: 'login' })
+			}).catch(() => {
+				load && load.close()
+				return !1
+			})
 		},
-		computed : {
-			...mapState('yorn/options',['isFullScreen']),
-			...mapGetters('yorn/menu',['getMenuIsCollapse']),
-			...mapState('yorn/theme',['themeList','activeTheme']),
-			...mapState('yorn/user',['userInfo'])
-		}
+		async changetheme (name) {
+			await this.set(name)
+		},
+		...mapActions('yorn/theme', ['set']),
+		...mapActions('yorn/menu', ['changeMenuIsCollapse']),
+		...mapActions('yorn/options', ['changeFullScreen']),
+		...mapActions('yorn/account', ['logout'])
+
+
+	},
+	computed: {
+		...mapState('yorn/options', ['isFullScreen']),
+		...mapGetters('yorn/menu', ['getMenuIsCollapse']),
+		...mapState('yorn/theme', ['themeList', 'activeTheme']),
+		...mapState('yorn/user', ['userInfo'])
 	}
+}
 
 </script>

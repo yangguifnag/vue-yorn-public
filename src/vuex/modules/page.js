@@ -153,6 +153,14 @@ export default {
 				}
 				resolve()
 			})
+		},
+		closeAll ({state, commit, dispatch}) {
+			return new Promise(async resolve => {
+				state.opened.splice(1).forEach(({name}) => commit('keepAliveRemove', name))
+				await dispatch('openedSave')
+				router.app.$route.name !== 'index' && router.push({ name: 'index'})
+				resolve()
+			})
 		}
 	},
 	mutations: {

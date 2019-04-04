@@ -11,14 +11,14 @@
 			</el-tab-pane>
 		</el-tabs>
 		<div class="yorn-tools-btn">
-			<el-dropdown>
+			<el-dropdown size="small" trigger="click" @command="handleTabCommand">
 				<span class="el-dropdown-link">
 					<div class="yorn-tools-btn-body">
 						<i-icon name="cog"/>
 					</div>
 				</span>
 				<el-dropdown-menu slot="dropdown">
-					<el-dropdown-item>黄金糕</el-dropdown-item>
+					<el-dropdown-item command="closeAll" icon="el-icon-error">关闭全部</el-dropdown-item>
 				</el-dropdown-menu>
 			</el-dropdown>
 		</div>
@@ -36,7 +36,7 @@ export default {
 		...mapState('yorn/page', ['opened', 'current'])
 	},
 	methods: {
-		...mapActions('yorn/page', ['close']),
+		...mapActions('yorn/page', ['close','closeAll']),
 		handleClick (tag) {
 			const page = this.opened.find(i => i.fullPath === tag.name)
 			const { name, params, query } = page
@@ -48,7 +48,12 @@ export default {
 			if (action === 'remove') {
 				this.close({targetName})
 			}
+		},
+		handleTabCommand (cmd) {
+			this[cmd]()
 		}
+
+
 	}
 }
 </script>
@@ -66,9 +71,9 @@ export default {
 			background-color: #FFF;
 			color:#C0C4CC;
 			&.is-active{
-				
+
 			}
-		
+
 		}
 		.el-tabs--card>.el-tabs__header .el-tabs__item.is-active{
 			background-color: #eff0f4;
@@ -95,7 +100,7 @@ export default {
 			}
 			.el-icon-close{
 				display: none;
-				
+
 			}
 
 		}
@@ -118,6 +123,7 @@ export default {
 				border-top-right-radius: 3px;
 				border-top-left-radius: 3px;
 				border: 1px solid #DCDFE6;
+				cursor: pointer;
 				&:hover{
 					background: #EBEEF5;
 				}
