@@ -5,8 +5,8 @@
 				<el-input
 				    size="small"
 				    placeholder="请输入查询内容"
-				    v-model="searchInput"
-				    @change="searchFunc"
+					v-model="searchInput"
+				    @input="searchFunc"
 				    clearable>
 				</el-input>
 			</div>

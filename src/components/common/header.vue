@@ -8,7 +8,9 @@
 				</a>
 			</div>
 		</div>
-
+		<div class="navMenu">
+			<NavMenu></NavMenu>
+		</div>
 		<div class="header-right">
 			<div class="header-tools clear">
 				<div class="item">
@@ -74,18 +76,6 @@
 						</el-dropdown-item>
 					</el-dropdown-menu>
 				</el-dropdown>
-				<!-- <div class="item f-bs-gray">
-					<a href="">
-						<font-awesome-icon class="f-bs-blue" icon="full-screen" />
-						修改密码
-					</a>
-				</div>
-				<div class="item f-bs-gray">
-					<a href="">
-						<font-awesome-icon class="f-bs-blue" icon="power-off" />
-						退出系统
-					</a>
-				</div> -->
 			</div>
 			<el-dialog title="主题" :visible.sync="themeDialogVisible" width="30%" :append-to-body="true" >
 
@@ -111,6 +101,9 @@
 <script>
 import {mapActions, mapState, mapMutations, mapGetters} from 'vuex'
 export default{
+	components : {
+		NavMenu : () => import('./navMenu.vue')
+	},
 	data () {
 		return {
 			themeDialogVisible: false,

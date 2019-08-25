@@ -36,7 +36,7 @@ export default [{
 		title: '废弃页3'
 	}
 }, {
-	path: 'handworkMerge',
+	path: '/demo/handworkMerge',
 	name: 'handworkMerge',
 	component: baseTable,
 	meta: {

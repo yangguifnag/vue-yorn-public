@@ -1,12 +1,13 @@
 <template>
 	<div class="yorn-tabs">
-		<el-tabs :value="current" type="card" :closable="true" @edit="handleTabsEdit" @tab-click="handleClick">
+		<el-tabs :value="current" type="card" :closable="true" @edit="handleTabsEdit" @tab-click="handleClick" @contextmenu.native="handleContextMenu">
 	  		<el-tab-pane
 	  			class="yorn-tabs-btn"
 			    :key="item.fullPath"
 			    v-for="(item, index) in opened"
 			    :name="item.fullPath"
 			    :label="item.meta.title"
+
 			>
 			</el-tab-pane>
 		</el-tabs>
@@ -22,21 +23,50 @@
 				</el-dropdown-menu>
 			</el-dropdown>
 		</div>
+		<i-menu :menulist="menuList"
+				:show.sync="show"
+				:x="menuX"
+				:y="menuY">
+			<menu-list :menulist="menuList" @cmd="handleCMD"></menu-list>
+		</i-menu>
 	</div>
 </template>
 <script>
 import { mapState, mapActions } from 'vuex'
 export default {
+	components: {
+		MenuList: () => import('@/components/base/i-menu/menuList/menuList.vue')
+	},
 	data () {
 		return {
-
+			show: false,
+			menuY: 0,
+			menuX: 0,
+			menuList: [{
+				icon: 'chevron-circle-right',
+				cmd: 'closeRight',
+				title: '关闭右侧'
+			},{
+				icon: 'chevron-circle-left',
+				cmd: 'closeLeft',
+				title: '关闭左侧'
+			},{
+				icon: 'times-circle',
+				cmd: 'closeAll',
+				title: '关闭全部'
+			},{
+				icon: 'arrows-alt-h',
+				cmd: 'closeOthers',
+				title: '关闭其他'
+			}],
+			tagName: '/index'
 		}
 	},
 	computed: {
 		...mapState('yorn/page', ['opened', 'current'])
 	},
 	methods: {
-		...mapActions('yorn/page', ['close','closeAll']),
+		...mapActions('yorn/page', ['close', 'closeAll', 'closeLeft', 'closeRight','closeOthers']),
 		handleClick (tag) {
 			const page = this.opened.find(i => i.fullPath === tag.name)
 			const { name, params, query } = page
@@ -50,7 +80,29 @@ export default {
 			}
 		},
 		handleTabCommand (cmd) {
-			this[cmd]()
+			this.handleCMD(cmd)
+		},
+		handleContextMenu (event) {
+			let target = event.target,
+				flag = false
+			if (target.className.indexOf('el-tabs__item') > -1) {
+				flag = true
+			} else if (target.parentNode.className.indexOf('el-tabs__item') > -1) {
+				target = target.parentNode
+				flag = true
+			}
+			if (flag) {
+				event.preventDefault()
+				event.stopPropagation()
+				this.menuX = event.clientX
+				this.menuY = event.clientY
+				this.tagName = target.getAttribute('aria-controls').slice(5)
+				this.show = true
+			}
+		},
+		handleCMD (cmd) {
+			this.show = false
+			this[cmd]({pagePath : this.tagName})
 		}
 
 

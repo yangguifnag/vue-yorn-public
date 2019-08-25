@@ -10,7 +10,7 @@
 			<router-view/>
 		</div>
 	</div>
-	
+
 </template>
 
 <script>
@@ -18,13 +18,13 @@ import headers from '@/components/common/header'
 import menus from '@/components/common/menu'
 
 export default {
-	components : {
+	components: {
 		headers,
 		menus
 	},
-	data(){
-		return{
-			show : true
+	data () {
+		return {
+			show: true
 		}
 	}
 }
@@ -47,14 +47,14 @@ export default {
 	}
 	.menulist{
 		margin-top: 70px;
-		 
+
 		height: 100%;
 		position: fixed;
 		top: 0;
 		left: 0;
 	}
 	.body{
-		 
+
 		height: calc(100% - 70px);
 		margin-left: 16%;
 	}

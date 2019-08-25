@@ -161,6 +161,51 @@ export default {
 				router.app.$route.name !== 'index' && router.push({ name: 'index'})
 				resolve()
 			})
+		},
+		closeLeft ({state, commit, dispatch}, {pagePath} = {}) {
+			return new Promise(async resolve => {
+				const pageCursor = pagePath || state.current
+				let currentIndex = 0
+				state.opened.forEach((item, i) => {
+					item.fullPath === pageCursor && (currentIndex = i)
+				})
+				if (currentIndex > 0) {
+					state.opened.splice(1, currentIndex - 1).forEach(({name}) => commit('keepAliveRemove', name))
+				}
+				state.current = pageCursor
+				router.app.$route.fullPath !== pageCursor && (router.push(pageCursor))
+				await dispatch('openedSave')
+				resolve()
+			})
+		},
+		closeRight ({state, commit, dispatch}, {pagePath} = {}) {
+			return new Promise(async resolve => {
+				const pagecursor = pagePath || state.current
+				let currentIndex = 0
+				state.opened.forEach((item, i) => {
+					item.fullPath === pagecursor && (currentIndex = i)
+				})
+				state.opened.splice(currentIndex + 1).forEach(({name}) => commit('keepAliveRemove', name))
+				state.current = pagecursor
+				router.app.$route.fullPath !== pagecursor && (router.push(pagecursor))
+				await dispatch('openedSave')
+				resolve()
+			})
+		},
+		closeOthers ({state, commit, dispatch}, {pagePath} = {}) {
+			return new Promise(async resolve => {
+				const pagecursor = pagePath || state.current
+				let currentIndex = 0
+				state.opened.forEach((item, i) => {
+					item.fullPath === pagecursor && (currentIndex = i)
+				})
+				state.opened.splice(currentIndex + 1).forEach(({name}) => commit('keepAliveRemove', name))
+				currentIndex !== 0 && (state.opened.splice(1, currentIndex - 1).forEach(({name}) => commit('keepAliveRemove', name)))
+				state.current = pagecursor
+				router.app.$route.fullPath !== pagecursor && (router.push(pagecursor))
+				await dispatch('openedSave')
+				resolve()
+			})
 		}
 	},
 	mutations: {

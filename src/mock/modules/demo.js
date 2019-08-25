@@ -7,13 +7,13 @@ const good = {
 const menu = [{
 	nodeId: '1',
 	parentId: '0',
-	nodeName: '菜单一',
+	nodeName: '示例',
 	nodeHref: '/',
 	icon: 'chart-pie'
 }, {
 	nodeId: '2',
 	parentId: '1',
-	nodeName: '菜单一',
+	nodeName: '字体图标',
 	nodeHref: '/cc'
 }, {
 	nodeId: '3',

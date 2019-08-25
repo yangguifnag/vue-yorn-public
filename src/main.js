@@ -35,6 +35,8 @@ import '@/mock'
 // yorn插件 npm包形式发布
 import yornPlugins from '@/plugins/yorn-plugins/index'
 import yornEx from '@/plugins/yorn-plugins-ex/index'
+// 引入顶部菜单
+import {navMenu} from "./menu";
 
 
 Vue.component(CollapseTransition.name, CollapseTransition)
@@ -62,6 +64,8 @@ new Vue({
 	render: h => h(App),
 	created () {
 		this.$store.commit('yorn/page/init', inside)
+		this.$store.commit('yorn/menu/setNavMenu', navMenu)
+
 	},
 	mounted () {
 		this.$store.dispatch('yorn/account/load')

@@ -2,6 +2,7 @@
 export default {
 	namespaced: true,
 	state: {
+		navMenu: [], // 储存navMenu 信息
 		menu: [], // 存储menu信息
 		adapter: m => m, // 适配器用于转换后台传来的menu 变为可用,
 		menuIsCollapse: false
@@ -18,6 +19,9 @@ export default {
 		},
 		updateMenuIsCollapse (state, val) {
 			state.menuIsCollapse = val
+		},
+		setNavMenu (state, val) {
+			state.navMenu = val
 		}
 	},
 	getters: {

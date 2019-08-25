@@ -9,6 +9,7 @@ import index from '@/pages/dashboard'
 import notFound from '@/components/pages/error/404'
 
 import test from './modules/test'
+import demo from './modules/demo'
 
 Vue.use(Router)
 
@@ -48,11 +49,12 @@ export const inside = [{
 			title: '主页1'
 		}
 	},
+	demo,
 	...test
 	]
+}
 
-}]
-
+]
 
 export default [
 	...uninside,
